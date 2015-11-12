@@ -1,58 +1,29 @@
 <?php
 /**
- * The template for displaying 404 pages (not found).
+ * The template for displaying 404 pages (Not Found).
  *
- * @link https://codex.wordpress.org/Creating_an_Error_404_Page
- *
- * @package Qohelet
+ * @package Quark
+ * @since Quark 1.0
  */
 
 get_header(); ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+	<div id="primary" class="site-content row" role="main">
 
-			<section class="error-404 not-found">
-				<header class="page-header">
-					<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'qohelet' ); ?></h1>
-				</header><!-- .page-header -->
+		<div class="col grid_12_of_12">
 
-				<div class="page-content">
-					<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'qohelet' ); ?></p>
-
+			<article id="post-0" class="post error404 no-results not-found">
+				<header class="entry-header">
+					<h1 class="entry-title"><i class="fa fa-frown-o fa-lg"></i> <?php esc_html_e( 'Uh Oh! This is somewhat embarrassing!', 'quark' ); ?></h1>
+				</header>
+				<div class="entry-content">
+					<p><?php esc_html_e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'quark' ); ?></p>
 					<?php get_search_form(); ?>
+				</div><!-- /.entry-content -->
+			</article><!-- /#post -->
 
-					<?php the_widget( 'WP_Widget_Recent_Posts' ); ?>
+		</div> <!-- /.col.grid_12_of_12 -->
 
-					<?php if ( qohelet_categorized_blog() ) : // Only show the widget if site has multiple categories. ?>
-					<div class="widget widget_categories">
-						<h2 class="widget-title"><?php esc_html_e( 'Most Used Categories', 'qohelet' ); ?></h2>
-						<ul>
-						<?php
-							wp_list_categories( array(
-								'orderby'    => 'count',
-								'order'      => 'DESC',
-								'show_count' => 1,
-								'title_li'   => '',
-								'number'     => 10,
-							) );
-						?>
-						</ul>
-					</div><!-- .widget -->
-					<?php endif; ?>
-
-					<?php
-						/* translators: %1$s: smiley */
-						$archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'qohelet' ), convert_smilies( ':)' ) ) . '</p>';
-						the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$archive_content" );
-					?>
-
-					<?php the_widget( 'WP_Widget_Tag_Cloud' ); ?>
-
-				</div><!-- .page-content -->
-			</section><!-- .error-404 -->
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
+	</div> <!-- /#primary.site-content.row -->
 
 <?php get_footer(); ?>
