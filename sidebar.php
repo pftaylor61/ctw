@@ -2,8 +2,8 @@
 /**
  * The Sidebar containing the main widget areas.
  *
- * @package Quark
- * @since Quark 1.0
+ * @package Qohelet
+ * @since Qohelet 0.0.1
  */
 ?>
 	<div class="col grid_4_of_12">

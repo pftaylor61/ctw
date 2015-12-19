@@ -10,8 +10,8 @@
  * banner widgets, they will be displayed in anywhere from one to four columns, depending on
  * how many widgets are active.
  *
- * @package Quark
- * @since Quark 1.0
+ * @package Qohelet
+ * @since Qohelet 0.0.1
  */
 
 get_header(); ?>

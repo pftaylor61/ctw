@@ -3,13 +3,16 @@ Theme Name: Qohelet
 Theme URI: http://www.oldcastleweb.com/pws/themes/qohelet/
 Author: Paul Taylor
 Author URI: http://www.oldcastleweb.com
-Description: Qohelet is a fully responsive theme for Wordpress. It has been built on the shoulders of giants, utilizing a number of other technologies, such as: 1. The Quark starter theme by Anthony Horton. 2. Quark is in turn built upon Underscores by Automattix. 3. Quark utilizes Normalize, Modernizr and Options Framework. 4. I have replaced Options Framework with the Redux Framework. 5. Qohelet also features a slider, based on Flexislide. 6. Many other smaller amounts of other technologies have been incorporated, so that I did not re-invent the wheel.
-Version: 0.2
+Description: Qohelet is a fully responsive theme for Wordpress. It has been built on the shoulders of giants, utilizing a number of other technologies, such as: 1. The Quark starter theme by Anthony Horton. 2. Quark is in turn built upon Underscores by Automattix. 3. Quark utilizes Normalize, Modernizr and Options Framework. 4. Many other smaller amounts of other technologies have been incorporated, so that I did not re-invent the wheel.
+Version: 0.3
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: black, gray, dark, light, one-column, two-columns, right-sidebar, fluid-layout, responsive-layout, custom-background, custom-header, custom-menu, editor-style, featured-image-header, featured-images, full-width-template, microformats, post-formats, sticky-post, theme-options, threaded-comments, translation-ready
 Text Domain: qohelet
+GitHub Theme URI: https://github.com/pftaylor61/qohelet
+GitHub Branch:    master
 */
+
 
 
 /* ==========================================================================
@@ -42,7 +45,7 @@ td { vertical-align: top; }
 body { 
 	margin: 0 auto;
 	padding: 0;
-	font: 16px/1.5 'PT Sans', Helvetica, Arial, sans-serif;
+	font: 16px/1.5 'Tenor Sans', Helvetica, Arial, sans-serif;
 	font-size: 1rem;
 	font-style: normal;
 	font-weight: 400;
@@ -104,7 +107,7 @@ img.wp-smiley,
 
 /* Header */
 h1, h2, h3, h4, h5, h6 {
-	font-family: 'Arvo', Georgia, "Times New Roman", Times, serif;
+	font-family: 'Kreon', Georgia, "Times New Roman", Times, serif;
 	font-style: normal;
 	font-weight: 400;
 	color: #333;
@@ -185,25 +188,25 @@ ul ul, ul ol, ol ol, ol ul {
 }
 
 dt {
-	font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+	font-family: 'Tenor Sans', Helvetica, Arial, sans-serif;
 	font-style: normal;
 	font-weight: 700;
 }
 
 b, strong { 
-	font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+	font-family: 'Tenor Sans', Helvetica, Arial, sans-serif;
 	font-style: normal;
 	font-weight: 700;
 }
 
 em {
-	font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+	font-family: 'Tenor Sans', Helvetica, Arial, sans-serif;
 	font-style: italic;
 	font-weight: 400;
 }
 
 strong em, b em {
-	font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+	font-family: 'Tenor Sans', Helvetica, Arial, sans-serif;
 	font-style: italic;
 	font-weight: 700;
 }
@@ -255,6 +258,27 @@ a:hover, a:active {
 	margin-bottom: 1rem;
 }
 
+/* Override the bootstrap style */
+blockquote {
+    border-left: none;
+}
+
+/* Insert the pseudo element - replicating what FontAwesome does */
+blockquote:before {
+    content: "\f10d"; 
+    font-family: FontAwesome;
+    float: left;
+    margin-right: 10px;
+}
+
+blockquote:after { 
+    content: "\f10e"; 
+    font-family: FontAwesome; 
+    float: right; 
+    margin-left: 10px; 
+}
+
+/*
 blockquote:before,
 blockquote:after,
 q:before,
@@ -270,10 +294,22 @@ blockquote {
 	padding: 0 0 0 16px;
 	padding: 0 0 0 1rem;
 }
+*/
+
+blockquote {
+    border-bottom: 0.5px solid #333;
+    margin-bottom: 10px;
+    margin-bottom: 1.25rem;
+    border-top: 0.5px solid #333;
+    margin-top: 10px;
+    margin-top: 1.25rem;
+    padding-bottom: 20px;
+    padding-bottom: 1.25rem;
+    background-color: rgba(192,192,192,0.3);
+}
 
 blockquote.pull-right {
-	border-left: 0 none;
-	border-right: 5px solid #333;
+	
 	margin: 0 20px 18px 0;
 	margin: 0 1.25rem 1.125rem 0;
 	padding: 0 16px 0 0;
@@ -281,12 +317,13 @@ blockquote.pull-right {
 	float: none;
 }
 
+
 blockquote p {
-	font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+	font-family: 'Tenor Sans', Helvetica, Arial, sans-serif;
 	font-style: italic;
 	font-weight: 400;
-	font-size: 24px;
-	font-size: 1.5rem;
+	font-size: 16px;
+	font-size: 1.0rem;
 	margin-bottom: 0;
 }
 
@@ -296,11 +333,12 @@ blockquote.pull-right small {
 }
 
 blockquote cite:before {
-	content: "\2014 ";
+	content: "\f101";
+        font-family: FontAwesome; 
 }
 
 blockquote cite {
-	font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+	font-family: 'Tenor Sans', Helvetica, Arial, sans-serif;
 	font-style: normal;
 	font-weight: 400;
 	font-size: 14px;
@@ -371,7 +409,7 @@ sub {
 .wp-caption .wp-caption-text,
 .gallery-caption,
 .entry-caption {
-	font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+	font-family: 'Tenor Sans', Helvetica, Arial, sans-serif;
 	font-style: italic;
 	font-weight: 400;
 	font-size: 14px;
@@ -415,7 +453,7 @@ img.wp-smiley, .rsswidget img {
 }
 
 .menu-toggle, button, input {
-	font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+	font-family: 'Tenor Sans', Helvetica, Arial, sans-serif;
 	font-style: normal;
 	font-weight: 400;
 	font-size: 16px;
@@ -660,7 +698,7 @@ select {
 .page-title,
 .entry-content th,
 .comment-content th {
-	font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+	font-family: 'Tenor Sans', Helvetica, Arial, sans-serif;
 	font-style: normal;
 	font-weight: 700;
 	font-size: 14px;
@@ -868,7 +906,7 @@ select {
 }
 
 .comments-link {
-	font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+	font-family: 'Tenor Sans', Helvetica, Arial, sans-serif;
 	font-style: italic;
 	font-weight: 400;
 	font-size: 14px;
@@ -894,7 +932,7 @@ select {
 }
 
 article.sticky .featured-post {
-	font-family: 'Arvo', Georgia, "Times New Roman", Times, serif;
+	font-family: 'Kreon', Georgia, "Times New Roman", Times, serif;
 	font-style: normal;
 	font-weight: 400;
 	border-top: 4px double #aaa;
@@ -991,7 +1029,7 @@ article.sticky {
 
 .entry-header address,
 .comment-content address {
-	font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+	font-family: 'Tenor Sans', Helvetica, Arial, sans-serif;
 	font-style: italic;
 	font-weight: 400;
 	display: block;
@@ -1003,7 +1041,7 @@ article.sticky {
 
 .entry-header time,
 .entry-header address {
-	font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+	font-family: 'Tenor Sans', Helvetica, Arial, sans-serif;
 	font-style: italic;
 	font-weight: 400;
 	font-size: 14px;
@@ -1056,7 +1094,7 @@ article.sticky {
 
 .entry-content dt,
 .comment-content dt {
-	font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+	font-family: 'Tenor Sans', Helvetica, Arial, sans-serif;
 	font-style: normal;
 	font-weight: 700;
 	line-height: 1.5;
@@ -1318,7 +1356,7 @@ article.sticky {
 }
 
 .archive-meta {
-	font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+	font-family: 'Tenor Sans', Helvetica, Arial, sans-serif;
 	font-style: italic;
 	font-weight: 400;
 	color: #777;
@@ -1378,7 +1416,7 @@ article.sticky {
 }
 
 .comments-area article header time {
-	font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+	font-family: 'Tenor Sans', Helvetica, Arial, sans-serif;
 	font-style: italic;
 	font-weight: 400;
 	line-height: 1.8;
@@ -1535,7 +1573,7 @@ span.required {
 }
 
 form label.error {
-	font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+	font-family: 'Tenor Sans', Helvetica, Arial, sans-serif;
 	font-style: normal;
 	font-weight: 700;
 	display:block;
@@ -1686,7 +1724,7 @@ form label.error {
 }
 
 #wp-calendar caption {
-	font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+	font-family: 'Tenor Sans', Helvetica, Arial, sans-serif;
 	font-style: normal;
 	font-weight: 700;
 	text-transform: uppercase;
@@ -1839,7 +1877,7 @@ li span.dots {
 }
 
 .nav-menu {
-	font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+	font-family: 'Tenor Sans', Helvetica, Arial, sans-serif;
 	font-style: normal;
 	font-weight: 700;
 	font-size: 18px;
@@ -2027,7 +2065,7 @@ li span.dots {
    ========================================================================== */
 
 h1.page-title {
-	font-family: 'Arvo', Georgia, "Times New Roman", Times, serif;
+	font-family: 'Kreon', Georgia, "Times New Roman", Times, serif;
 	font-style: normal;
 	font-weight: 400;
 	color: #333;

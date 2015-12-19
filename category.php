@@ -2,8 +2,8 @@
 /**
  * The template for displaying an archive page for Categories.
  *
- * @package Quark
- * @since Quark 1.0
+ * @package Qohelet
+ * @since Qohelet 0.0.1
  */
 
 get_header(); ?>
@@ -15,7 +15,7 @@ get_header(); ?>
 			<?php if ( have_posts() ) : ?>
 
 				<header class="archive-header">
-					<h1 class="archive-title"><?php printf( esc_html__( 'Category Archives: %s', 'quark' ), '<span class="cat-archive">' . single_cat_title( '', false ) . '</span>' ); ?></h1>
+					<h1 class="archive-title"><?php printf( esc_html__( 'Category Archives: %s', 'qohelet' ), '<span class="cat-archive">' . single_cat_title( '', false ) . '</span>' ); ?></h1>
 
 					<?php if ( category_description() ) { // Show an optional category description ?>
 						<div class="archive-meta"><?php echo category_description(); ?></div>
@@ -27,7 +27,7 @@ get_header(); ?>
 					<?php get_template_part( 'content', get_post_format() ); ?>
 				<?php endwhile; ?>
 
-				<?php quark_content_nav( 'nav-below' ); ?>
+				<?php qohelet_content_nav( 'nav-below' ); ?>
 
 			<?php else : ?>
 

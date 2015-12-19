@@ -4,8 +4,8 @@
  *
  * Description: Displays an archive of posts, ordered by date.
  *
- * @package Quark
- * @since Quark 1.0
+ * @package Qohelet
+ * @since Qohelet 0.0.1
  */
 
 get_header(); ?>

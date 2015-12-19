@@ -4,8 +4,8 @@
  *
  * Description: Displays a page with a left hand sidebar.
  *
- * @package Quark
- * @since Quark 1.0
+ * @package Qohelet
+ * @since Qohelet 0.0.1
  */
 
 get_header(); ?>
@@ -22,7 +22,7 @@ get_header(); ?>
 					<?php get_template_part( 'content', 'page' ); ?>
 				<?php endwhile; ?>
 
-				<?php quark_content_nav( 'nav-below' ); ?>
+				<?php qohelet_content_nav( 'nav-below' ); ?>
 
 			<?php else : ?>
 

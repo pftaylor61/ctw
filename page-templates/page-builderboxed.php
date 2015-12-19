@@ -4,8 +4,8 @@
  *
  * Description: Displays a boxed full-width page for use with page builders like Visual Composer, Beaver Builder and the Divi Builder.
  *
- * @package Quark
- * @since Quark 1.3.2
+ * @package Qohelet
+ * @since Qohelet 0.0.1.2
  */
 
 get_header(); ?>

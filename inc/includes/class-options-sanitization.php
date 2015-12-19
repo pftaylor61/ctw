@@ -313,10 +313,10 @@ add_filter( 'of_font_face', 'of_sanitize_font_face' );
  */
 function of_recognized_background_repeat() {
 	$default = array(
-		'no-repeat' => esc_html__( 'No Repeat', 'quark' ),
-		'repeat-x'  => esc_html__( 'Repeat Horizontally', 'quark' ),
-		'repeat-y'  => esc_html__( 'Repeat Vertically', 'quark' ),
-		'repeat'    => esc_html__( 'Repeat All', 'quark' ),
+		'no-repeat' => esc_html__( 'No Repeat', 'qohelet' ),
+		'repeat-x'  => esc_html__( 'Repeat Horizontally', 'qohelet' ),
+		'repeat-y'  => esc_html__( 'Repeat Vertically', 'qohelet' ),
+		'repeat'    => esc_html__( 'Repeat All', 'qohelet' ),
 		);
 	return apply_filters( 'of_recognized_background_repeat', $default );
 }
@@ -328,15 +328,15 @@ function of_recognized_background_repeat() {
  */
 function of_recognized_background_position() {
 	$default = array(
-		'top left'      => esc_html__( 'Top Left', 'quark' ),
-		'top center'    => esc_html__( 'Top Center', 'quark' ),
-		'top right'     => esc_html__( 'Top Right', 'quark' ),
-		'center left'   => esc_html__( 'Middle Left', 'quark' ),
-		'center center' => esc_html__( 'Middle Center', 'quark' ),
-		'center right'  => esc_html__( 'Middle Right', 'quark' ),
-		'bottom left'   => esc_html__( 'Bottom Left', 'quark' ),
-		'bottom center' => esc_html__( 'Bottom Center', 'quark' ),
-		'bottom right'  => esc_html__( 'Bottom Right', 'quark')
+		'top left'      => esc_html__( 'Top Left', 'qohelet' ),
+		'top center'    => esc_html__( 'Top Center', 'qohelet' ),
+		'top right'     => esc_html__( 'Top Right', 'qohelet' ),
+		'center left'   => esc_html__( 'Middle Left', 'qohelet' ),
+		'center center' => esc_html__( 'Middle Center', 'qohelet' ),
+		'center right'  => esc_html__( 'Middle Right', 'qohelet' ),
+		'bottom left'   => esc_html__( 'Bottom Left', 'qohelet' ),
+		'bottom center' => esc_html__( 'Bottom Center', 'qohelet' ),
+		'bottom right'  => esc_html__( 'Bottom Right', 'qohelet')
 		);
 	return apply_filters( 'of_recognized_background_position', $default );
 }
@@ -348,8 +348,8 @@ function of_recognized_background_position() {
  */
 function of_recognized_background_attachment() {
 	$default = array(
-		'scroll' => esc_html__( 'Scroll Normally', 'quark' ),
-		'fixed'  => esc_html__( 'Fixed in Place', 'quark')
+		'scroll' => esc_html__( 'Scroll Normally', 'qohelet' ),
+		'fixed'  => esc_html__( 'Fixed in Place', 'qohelet')
 		);
 	return apply_filters( 'of_recognized_background_attachment', $default );
 }
@@ -421,10 +421,10 @@ function of_recognized_font_faces() {
  */
 function of_recognized_font_styles() {
 	$default = array(
-		'normal'      => esc_html__( 'Normal', 'quark' ),
-		'italic'      => esc_html__( 'Italic', 'quark' ),
-		'bold'        => esc_html__( 'Bold', 'quark' ),
-		'bold italic' => esc_html__( 'Bold Italic', 'quark' )
+		'normal'      => esc_html__( 'Normal', 'qohelet' ),
+		'italic'      => esc_html__( 'Italic', 'qohelet' ),
+		'bold'        => esc_html__( 'Bold', 'qohelet' ),
+		'bold italic' => esc_html__( 'Bold Italic', 'qohelet' )
 		);
 	return apply_filters( 'of_recognized_font_styles', $default );
 }

@@ -8,8 +8,8 @@
  * E.g., it puts together the home page when no home.php file exists.
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
- * @package Quark
- * @since Quark 1.0
+ * @package Qohelet
+ * @since Qohelet 0.0.1
  */
 
 get_header(); ?>
@@ -25,7 +25,7 @@ get_header(); ?>
 					<?php get_template_part( 'content', get_post_format() ); // Include the Post-Format-specific template for the content ?>
 				<?php endwhile; ?>
 
-				<?php quark_content_nav( 'nav-below' ); ?>
+				<?php qohelet_content_nav( 'nav-below' ); ?>
 
 			<?php else : ?>
 

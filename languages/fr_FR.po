@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: quark\n"
+"Project-Id-Version: qohelet\n"
 "POT-Creation-Date: 2015-01-08 02:05+1000\n"
 "PO-Revision-Date: 2015-03-10 15:13+0100\n"
 "Last-Translator: Max <maxime.mullet@free.fr>\n"
@@ -121,17 +121,17 @@ msgid "Primary Menu"
 msgstr "Menu principal"
 
 #: ../functions.php:150
-msgctxt "PT Sans font: on or off"
+msgctxt "Tenor Sans font: on or off"
 msgid "on"
 msgstr "on"
 
 #: ../functions.php:155
-msgctxt "PT Sans font: add new subset (cyrillic)"
+msgctxt "Tenor Sans font: add new subset (cyrillic)"
 msgid "no-subset"
 msgstr "Aucun sous-ensemble"
 
 #: ../functions.php:163
-msgctxt "Arvo font: on or off"
+msgctxt "Kreon font: on or off"
 msgid "on"
 msgstr "on"
 

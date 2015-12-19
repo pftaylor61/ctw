@@ -2,8 +2,8 @@
 /**
  * The template used for displaying page content in page-builderfullwidth.php
  *
- * @package Quark
- * @since Quark 1.3.2
+ * @package Qohelet
+ * @since Qohelet 0.0.1
  */
 ?>
 

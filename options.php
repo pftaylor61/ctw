@@ -15,7 +15,7 @@ function optionsframework_option_name() {
  * Defines an array of options that will be used to generate the settings page and be saved in the database.
  * When creating the 'id' fields, make sure to use all lowercase and no spaces.
  *
- * If you are making your theme translatable, you should replace 'quark'
+ * If you are making your theme translatable, you should replace 'qohelet'
  * with the actual text domain for your theme.  Read more:
  * http://codex.wordpress.org/Function_Reference/load_theme_textdomain
  */
@@ -28,7 +28,7 @@ function optionsframework_options() {
 	// Background Defaults
 	$background_defaults = array(
 		'color' => '#222222',
-		'image' => $imagepath . 'dark-noise.jpg',
+		'image' => $imagepath . 'dark-noise-2.jpg',
 		'repeat' => 'repeat',
 		'position' => 'top left',
 		'attachment'=>'scroll' );
@@ -42,31 +42,31 @@ function optionsframework_options() {
 
 	// Footer Position settings
 	$footer_position_settings = array(
-		'left' => esc_html__( 'Left aligned', 'quark' ),
-		'center' => esc_html__( 'Center aligned', 'quark' ),
-		'right' => esc_html__( 'Right aligned', 'quark' )
+		'left' => esc_html__( 'Left aligned', 'qohelet' ),
+		'center' => esc_html__( 'Center aligned', 'qohelet' ),
+		'right' => esc_html__( 'Right aligned', 'qohelet' )
 	);
 
 	// Number of shop products
 	$shop_products_settings = array(
-		'4' => esc_html__( '4 Products', 'quark' ),
-		'8' => esc_html__( '8 Products', 'quark' ),
-		'12' => esc_html__( '12 Products', 'quark' ),
-		'16' => esc_html__( '16 Products', 'quark' ),
-		'20' => esc_html__( '20 Products', 'quark' ),
-		'24' => esc_html__( '24 Products', 'quark' ),
-		'28' => esc_html__( '28 Products', 'quark' )
+		'4' => esc_html__( '4 Products', 'qohelet' ),
+		'8' => esc_html__( '8 Products', 'qohelet' ),
+		'12' => esc_html__( '12 Products', 'qohelet' ),
+		'16' => esc_html__( '16 Products', 'qohelet' ),
+		'20' => esc_html__( '20 Products', 'qohelet' ),
+		'24' => esc_html__( '24 Products', 'qohelet' ),
+		'28' => esc_html__( '28 Products', 'qohelet' )
 	);
 
 	$options = array();
 
 	$options[] = array(
-		'name' => esc_html__( 'Basic Settings', 'quark' ),
+		'name' => esc_html__( 'Basic Settings', 'qohelet' ),
 		'type' => 'heading' );
 
 	$options[] = array(
-		'name' => esc_html__( 'Background', 'quark' ),
-		'desc' => sprintf( wp_kses( __( 'If you&rsquo;d like to replace or remove the default background image, use the <a href="%1$s" title="Custom background">Appearance &gt; Background</a> menu option.', 'quark' ), array( 
+		'name' => esc_html__( 'Background', 'qohelet' ),
+		'desc' => sprintf( wp_kses( __( 'If you&rsquo;d like to replace or remove the default background image, use the <a href="%1$s" title="Custom background">Appearance &gt; Background</a> menu option.', 'qohelet' ), array( 
 			'a' => array( 
 				'href' => array(),
 				'title' => array() )
@@ -74,8 +74,8 @@ function optionsframework_options() {
 		'type' => 'info' );
 
 	$options[] = array(
-		'name' => esc_html__( 'Logo', 'quark' ),
-		'desc' => sprintf( wp_kses( __( 'If you&rsquo;d like to replace or remove the default logo, use the <a href="%1$s" title="Custom header">Appearance &gt; Header</a> menu option.', 'quark' ), array( 
+		'name' => esc_html__( 'Logo', 'qohelet' ),
+		'desc' => sprintf( wp_kses( __( 'If you&rsquo;d like to replace or remove the default logo, use the <a href="%1$s" title="Custom header">Appearance &gt; Header</a> menu option.', 'qohelet' ), array( 
 			'a' => array( 
 				'href' => array(),
 				'title' => array() )
@@ -83,191 +83,191 @@ function optionsframework_options() {
 		'type' => 'info' );
 
 	$options[] = array(
-		'name' => esc_html__( 'Social Media Settings', 'quark' ),
-		'desc' => esc_html__( 'Enter the URLs for your Social Media platforms. You can also optionally specify whether you want these links opened in a new browser tab/window.', 'quark' ),
+		'name' => esc_html__( 'Social Media Settings', 'qohelet' ),
+		'desc' => esc_html__( 'Enter the URLs for your Social Media platforms. You can also optionally specify whether you want these links opened in a new browser tab/window.', 'qohelet' ),
 		'type' => 'info' );
 
 	$options[] = array(
-		'name' => esc_html__('Open links in new Window/Tab', 'quark'),
-		'desc' => esc_html__('Open the social media links in a new browser tab/window', 'quark'),
+		'name' => esc_html__('Open links in new Window/Tab', 'qohelet'),
+		'desc' => esc_html__('Open the social media links in a new browser tab/window', 'qohelet'),
 		'id' => 'social_newtab',
 		'std' => '0',
 		'type' => 'checkbox');
 
 	$options[] = array(
-		'name' => esc_html__( 'Twitter', 'quark' ),
-		'desc' => esc_html__( 'Enter your Twitter URL.', 'quark' ),
+		'name' => esc_html__( 'Twitter', 'qohelet' ),
+		'desc' => esc_html__( 'Enter your Twitter URL.', 'qohelet' ),
 		'id' => 'social_twitter',
 		'std' => '',
 		'type' => 'text' );
 
 	$options[] = array(
-		'name' => esc_html__( 'Facebook', 'quark' ),
-		'desc' => esc_html__( 'Enter your Facebook URL.', 'quark' ),
+		'name' => esc_html__( 'Facebook', 'qohelet' ),
+		'desc' => esc_html__( 'Enter your Facebook URL.', 'qohelet' ),
 		'id' => 'social_facebook',
 		'std' => '',
 		'type' => 'text' );
 
 	$options[] = array(
-		'name' => esc_html__( 'Google+', 'quark' ),
-		'desc' => esc_html__( 'Enter your Google+ URL.', 'quark' ),
+		'name' => esc_html__( 'Google+', 'qohelet' ),
+		'desc' => esc_html__( 'Enter your Google+ URL.', 'qohelet' ),
 		'id' => 'social_googleplus',
 		'std' => '',
 		'type' => 'text' );
 
 	$options[] = array(
-		'name' => esc_html__( 'LinkedIn', 'quark' ),
-		'desc' => esc_html__( 'Enter your LinkedIn URL.', 'quark' ),
+		'name' => esc_html__( 'LinkedIn', 'qohelet' ),
+		'desc' => esc_html__( 'Enter your LinkedIn URL.', 'qohelet' ),
 		'id' => 'social_linkedin',
 		'std' => '',
 		'type' => 'text' );
 
 	$options[] = array(
-		'name' => esc_html__( 'SlideShare', 'quark' ),
-		'desc' => esc_html__( 'Enter your SlideShare URL.', 'quark' ),
+		'name' => esc_html__( 'SlideShare', 'qohelet' ),
+		'desc' => esc_html__( 'Enter your SlideShare URL.', 'qohelet' ),
 		'id' => 'social_slideshare',
 		'std' => '',
 		'type' => 'text' );
 
 	$options[] = array(
-		'name' => esc_html__( 'Dribbble', 'quark' ),
-		'desc' => esc_html__( 'Enter your Dribbble URL.', 'quark' ),
+		'name' => esc_html__( 'Dribbble', 'qohelet' ),
+		'desc' => esc_html__( 'Enter your Dribbble URL.', 'qohelet' ),
 		'id' => 'social_dribbble',
 		'std' => '',
 		'type' => 'text' );
 
 	$options[] = array(
-		'name' => esc_html__( 'Tumblr', 'quark' ),
-		'desc' => esc_html__( 'Enter your Tumblr URL.', 'quark' ),
+		'name' => esc_html__( 'Tumblr', 'qohelet' ),
+		'desc' => esc_html__( 'Enter your Tumblr URL.', 'qohelet' ),
 		'id' => 'social_tumblr',
 		'std' => '',
 		'type' => 'text' );
 
 	$options[] = array(
-		'name' => esc_html__( 'GitHub', 'quark' ),
-		'desc' => esc_html__( 'Enter your GitHub URL.', 'quark' ),
+		'name' => esc_html__( 'GitHub', 'qohelet' ),
+		'desc' => esc_html__( 'Enter your GitHub URL.', 'qohelet' ),
 		'id' => 'social_github',
 		'std' => '',
 		'type' => 'text' );
 
 	$options[] = array(
-		'name' => esc_html__( 'Bitbucket', 'quark' ),
-		'desc' => esc_html__( 'Enter your Bitbucket URL.', 'quark' ),
+		'name' => esc_html__( 'Bitbucket', 'qohelet' ),
+		'desc' => esc_html__( 'Enter your Bitbucket URL.', 'qohelet' ),
 		'id' => 'social_bitbucket',
 		'std' => '',
 		'type' => 'text' );
 
 	$options[] = array(
-		'name' => esc_html__( 'Foursquare', 'quark' ),
-		'desc' => esc_html__( 'Enter your Foursquare URL.', 'quark' ),
+		'name' => esc_html__( 'Foursquare', 'qohelet' ),
+		'desc' => esc_html__( 'Enter your Foursquare URL.', 'qohelet' ),
 		'id' => 'social_foursquare',
 		'std' => '',
 		'type' => 'text' );
 
 	$options[] = array(
-		'name' => esc_html__( 'YouTube', 'quark' ),
-		'desc' => esc_html__( 'Enter your YouTube URL.', 'quark' ),
+		'name' => esc_html__( 'YouTube', 'qohelet' ),
+		'desc' => esc_html__( 'Enter your YouTube URL.', 'qohelet' ),
 		'id' => 'social_youtube',
 		'std' => '',
 		'type' => 'text' );
 
 	$options[] = array(
-		'name' => esc_html__( 'Instagram', 'quark' ),
-		'desc' => esc_html__( 'Enter your Instagram URL.', 'quark' ),
+		'name' => esc_html__( 'Instagram', 'qohelet' ),
+		'desc' => esc_html__( 'Enter your Instagram URL.', 'qohelet' ),
 		'id' => 'social_instagram',
 		'std' => '',
 		'type' => 'text' );
 
 	$options[] = array(
-		'name' => esc_html__( 'Flickr', 'quark' ),
-		'desc' => esc_html__( 'Enter your Flickr URL.', 'quark' ),
+		'name' => esc_html__( 'Flickr', 'qohelet' ),
+		'desc' => esc_html__( 'Enter your Flickr URL.', 'qohelet' ),
 		'id' => 'social_flickr',
 		'std' => '',
 		'type' => 'text' );
 
 	$options[] = array(
-		'name' => esc_html__( 'Pinterest', 'quark' ),
-		'desc' => esc_html__( 'Enter your Pinterest URL.', 'quark' ),
+		'name' => esc_html__( 'Pinterest', 'qohelet' ),
+		'desc' => esc_html__( 'Enter your Pinterest URL.', 'qohelet' ),
 		'id' => 'social_pinterest',
 		'std' => '',
 		'type' => 'text' );
 
 	$options[] = array(
-		'name' => esc_html__( 'RSS', 'quark' ),
-		'desc' => esc_html__( 'Enter your RSS Feed URL.', 'quark' ),
+		'name' => esc_html__( 'RSS', 'qohelet' ),
+		'desc' => esc_html__( 'Enter your RSS Feed URL.', 'qohelet' ),
 		'id' => 'social_rss',
 		'std' => '',
 		'type' => 'text' );
 
 	$options[] = array(
-		'name' => esc_html__( 'Advanced settings', 'quark' ),
+		'name' => esc_html__( 'Advanced settings', 'qohelet' ),
 		'type' => 'heading' );
 
 	$options[] = array(
-		'name' =>  esc_html__( 'Banner Background', 'quark' ),
-		'desc' => esc_html__( 'Select an image and background color for the homepage banner.', 'quark' ),
+		'name' =>  esc_html__( 'Banner Background', 'qohelet' ),
+		'desc' => esc_html__( 'Select an image and background color for the homepage banner.', 'qohelet' ),
 		'id' => 'banner_background',
 		'std' => $background_defaults,
 		'type' => 'background' );
 
 	$options[] = array(
-		'name' => esc_html__( 'Footer Background Color', 'quark' ),
-		'desc' => esc_html__( 'Select the background color for the footer.', 'quark' ),
+		'name' => esc_html__( 'Footer Background Color', 'qohelet' ),
+		'desc' => esc_html__( 'Select the background color for the footer.', 'qohelet' ),
 		'id' => 'footer_color',
 		'std' => '#222222',
 		'type' => 'color' );
 
 	$options[] = array(
-		'name' => esc_html__( 'Footer Content', 'quark' ),
-		'desc' => esc_html__( 'Enter the text you&lsquo;d like to display in the footer. This content will be displayed just below the footer widgets. It&lsquo;s ideal for displaying your copyright message or credits.', 'quark' ),
+		'name' => esc_html__( 'Footer Content', 'qohelet' ),
+		'desc' => esc_html__( 'Enter the text you&lsquo;d like to display in the footer. This content will be displayed just below the footer widgets. It&lsquo;s ideal for displaying your copyright message or credits.', 'qohelet' ),
 		'id' => 'footer_content',
-		'std' => quark_get_credits(),
+		'std' => qohelet_get_credits(),
 		'type' => 'editor',
 		'settings' => $wp_editor_settings );
 
 	$options[] = array(
-		'name' => esc_html__( 'Footer Content Position', 'quark' ),
-		'desc' => esc_html__( 'Select what position you would like the footer content aligned to.', 'quark' ),
+		'name' => esc_html__( 'Footer Content Position', 'qohelet' ),
+		'desc' => esc_html__( 'Select what position you would like the footer content aligned to.', 'qohelet' ),
 		'id' => 'footer_position',
 		'std' => 'center',
 		'type' => 'select',
 		'class' => 'mini',
 		'options' => $footer_position_settings );
 
-	if( quark_is_woocommerce_active() ) {
+	if( qohelet_is_woocommerce_active() ) {
 		$options[] = array(
-		'name' => esc_html__( 'WooCommerce settings', 'quark' ),
+		'name' => esc_html__( 'WooCommerce settings', 'qohelet' ),
 		'type' => 'heading' );
 
 		$options[] = array(
-			'name' => esc_html__('Shop sidebar', 'quark'),
-			'desc' => esc_html__('Display the sidebar on the WooCommerce Shop page', 'quark'),
+			'name' => esc_html__('Shop sidebar', 'qohelet'),
+			'desc' => esc_html__('Display the sidebar on the WooCommerce Shop page', 'qohelet'),
 			'id' => 'woocommerce_shopsidebar',
 			'std' => '1',
 			'type' => 'checkbox');
 
 		$options[] = array(
-			'name' => esc_html__('Products sidebar', 'quark'),
-			'desc' => esc_html__('Display the sidebar on the WooCommerce Single Product page', 'quark'),
+			'name' => esc_html__('Products sidebar', 'qohelet'),
+			'desc' => esc_html__('Display the sidebar on the WooCommerce Single Product page', 'qohelet'),
 			'id' => 'woocommerce_productsidebar',
 			'std' => '1',
 			'type' => 'checkbox');
 
 		$options[] = array(
-			'name' => esc_html__( 'Cart, Checkout & My Account sidebars', 'quark' ),
-			'desc' => esc_html__( 'The &lsquo;Cart&rsquo;, &lsquo;Checkout&rsquo; and &lsquo;My Account&rsquo; pages are displayed using shortcodes. To remove the sidebar from these Pages, simply edit each Page and change the Template (in the Page Attributes Panel) to the &lsquo;Full-width Page Template&rsquo;.', 'quark' ),
+			'name' => esc_html__( 'Cart, Checkout & My Account sidebars', 'qohelet' ),
+			'desc' => esc_html__( 'The &lsquo;Cart&rsquo;, &lsquo;Checkout&rsquo; and &lsquo;My Account&rsquo; pages are displayed using shortcodes. To remove the sidebar from these Pages, simply edit each Page and change the Template (in the Page Attributes Panel) to the &lsquo;Full-width Page Template&rsquo;.', 'qohelet' ),
 			'type' => 'info' );
 
 		$options[] = array(
-			'name' => esc_html__('Shop Breadcrumbs', 'quark'),
-			'desc' => esc_html__('Display the breadcrumbs on the WooCommerce pages', 'quark'),
+			'name' => esc_html__('Shop Breadcrumbs', 'qohelet'),
+			'desc' => esc_html__('Display the breadcrumbs on the WooCommerce pages', 'qohelet'),
 			'id' => 'woocommerce_breadcrumbs',
 			'std' => '1',
 			'type' => 'checkbox');
 
 		$options[] = array(
-			'name' => esc_html__( 'Shop Products', 'quark' ),
-			'desc' => esc_html__( 'Select the number of products to display on the shop page.', 'quark' ),
+			'name' => esc_html__( 'Shop Products', 'qohelet' ),
+			'desc' => esc_html__( 'Select the number of products to display on the shop page.', 'qohelet' ),
 			'id' => 'shop_products',
 			'std' => '12',
 			'type' => 'select',

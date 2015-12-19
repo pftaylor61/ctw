@@ -3,8 +3,8 @@
  * The sidebar containing the front page widget areas.
  * If there are no active widgets, the sidebar will be hidden completely.
  *
- * @package Quark
- * @since Quark 1.0
+ * @package Qohelet
+ * @since Qohelet 0.0.1
  */
 ?>
 	<?php

@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: quark\n"
+"Project-Id-Version: qohelet\n"
 "POT-Creation-Date: 2014-05-19 23:28+0100\n"
 "PO-Revision-Date: 2014-05-20 17:49+0100\n"
 "Last-Translator: Tino Groteloh\n"
@@ -133,7 +133,7 @@ msgid "on"
 msgstr "Ein"
 
 #: ../functions.php:118
-msgctxt "PT Sans font: on or off"
+msgctxt "Tenor Sans font: on or off"
 msgid "on"
 msgstr "Ein"
 
@@ -818,11 +818,11 @@ msgstr "Suchergebnisse für: %s"
 msgid "Tag Archives: %s"
 msgstr "Tag Archive: %s"
 
-#~ msgctxt "PT Sans font: add new subset (cyrillic)"
+#~ msgctxt "Tenor Sans font: add new subset (cyrillic)"
 #~ msgid "no-subset"
 #~ msgstr "no-subset"
 
-#~ msgctxt "Arvo font: on or off"
+#~ msgctxt "Kreon font: on or off"
 #~ msgid "on"
 #~ msgstr "Ein"
 
