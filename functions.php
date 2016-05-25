@@ -1146,12 +1146,10 @@ if ( ! function_exists( 'qohelet_set_number_woocommerce_products' ) ) {
 	@ https://digwp.com/2014/04/backup-restore-theme-options/
 	Go to "Appearance > Backup Options" to export/import theme settings
 	(based on "Gantry Export and Import Options" by Hassan Derakhshandeh)
-	
-	I (OCWS) have edited the code slightly, so that it works with Child Themes
 
 	Usage:
 	1. Add entire backup/restore snippet to functions.php
-	
+	2. Edit 'shapeSpace_options' to match your theme options
 */
 class backup_restore_theme_options {
 
@@ -1192,11 +1190,15 @@ class backup_restore_theme_options {
 			exit;
 		}
 	}
-	function options_page() { ?>
+	function options_page() { 
+                $ocws_oeai_themename = wp_get_theme();
+            
+            ?>
 
 		<div class="wrap">
 			<?php screen_icon(); ?>
-			<h2>Backup/Restore Theme Options</h2>
+                    <h2>Backup/Restore Theme Options</h2>
+                    <p>for theme: <?php echo "<strong>".$ocws_oeai_themename->get('Name')."</strong> Version ".$ocws_oeai_themename->get('Version'); ?></p>
 			<form action="" method="POST" enctype="multipart/form-data">
 				<style>#backup-options td { display: block; margin-bottom: 20px; }</style>
 				<table id="backup-options">
@@ -1227,7 +1229,7 @@ class backup_restore_theme_options {
                 
                 $ocwsqt_option_name = get_option( 'stylesheet' );
                 
-		return $wpdb->get_results("SELECT option_name, option_value FROM {$wpdb->options} WHERE option_name = '".$ocwsqt_option_name."'"); 
+		return $wpdb->get_results("SELECT option_name, option_value FROM {$wpdb->options} WHERE option_name = '".$ocwsqt_option_name."'"); // edit 'qohelet' to match theme options
 	}
 }
 new backup_restore_theme_options();
