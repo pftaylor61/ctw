@@ -4,8 +4,8 @@
  *
  * Displays all of the <head> section and everything up till <div id="maincontentcontainer">
  *
- * @package Qohelet
- * @since Qohelet 0.0.1
+ * @package ctw
+ * @since ctw 0.0.1
  */
 ?><!doctype html>
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
@@ -30,6 +30,15 @@
 
 	<link rel="profile" href="http://gmpg.org/xfn/11" />
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
+        
+        
+        <!--Include jQuery -->
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <!--Include the slidepanel plugin -->
+        <script type="text/javascript" src="js/jquery.slidepanel.js"></script>
+        <!--Add the css -->
+        <link rel="stylesheet" type="text/css" href="css/jquery.slidepanel.css">
+				
 
 	<?php wp_head(); ?>
 </head>
@@ -37,72 +46,55 @@
 <body <?php body_class(); ?>>
 
 <div id="wrapper" class="hfeed site">
+    <div id="ocwsctw_inside_wrapper" class="ocwsctw_wrap">
 
-	<div class="visuallyhidden skip-link"><a href="#primary" title="<?php esc_attr_e( 'Skip to main content', 'qohelet' ); ?>"><?php esc_html_e( 'Skip to main content', 'qohelet' ); ?></a></div>
+	<div class="visuallyhidden skip-link"><a href="#primary" title="<?php esc_attr_e( 'Skip to main content', 'ctw' ); ?>"><?php esc_html_e( 'Skip to main content', 'ctw' ); ?></a></div>
 
 	<div id="headercontainer">
 
 		<header id="masthead" class="site-header row" role="banner">
-			<div class="col grid_5_of_12 site-title">
+                        <div class="col grid_9_of_12">
+				<div class="social-media-icons">
+					<?php echo ctw_get_social_media(); ?>
+				</div>
+				
+			</div> <!-- /.col.grid_7_of_12 -->
+			<div class="col grid_10_of_12 site-title">
 				<h1>
 					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" rel="home">
 						<?php 
 						$headerImg = get_header_image();
 						if( !empty( $headerImg ) ) { ?>
-							<img src="<?php header_image(); ?>" height="<?php echo get_custom_header()->height; ?>" width="<?php echo get_custom_header()->width; ?>" alt="" />
+							<img src="<?php header_image(); ?>" height="<?php echo get_custom_header()->height; ?>" width="<?php echo get_custom_header()->width; ?>" alt="" /><?php echo get_bloginfo( 'name' ); ?>
 						<?php } 
 						else {
 							echo get_bloginfo( 'name' );
 						} ?>
 					</a>
 				</h1>
+                            <p><?php echo get_bloginfo( 'description'); ?></p>
 			</div> <!-- /.col.grid_5_of_12 -->
 
-			<div class="col grid_7_of_12">
-				<div class="social-media-icons">
-					<?php echo qohelet_get_social_media(); ?>
-				</div>
-				<nav id="site-navigation" class="main-navigation" role="navigation">
-					<h3 class="menu-toggle assistive-text"><?php esc_html_e( 'Menu', 'qohelet' ); ?></h3>
-					<div class="assistive-text skip-link"><a href="#content" title="<?php esc_attr_e( 'Skip to content', 'qohelet' ); ?>"><?php esc_html_e( 'Skip to content', 'qohelet' ); ?></a></div>
-					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu' ) ); ?>
-				</nav> <!-- /.site-navigation.main-navigation -->
-			</div> <!-- /.col.grid_7_of_12 -->
+			
 		</header> <!-- /#masthead.site-header.row -->
 
 	</div> <!-- /#headercontainer -->
 	<div id="bannercontainer">
 		<div class="banner row">
-			<?php if ( is_front_page() ) {
-				// Count how many banner sidebars are active so we can work out how many containers we need
-				$bannerSidebars = 0;
-				for ( $x=1; $x<=2; $x++ ) {
-					if ( is_active_sidebar( 'frontpage-banner' . $x ) ) {
-						$bannerSidebars++;
-					}
-				}
-
-				// If there's one or more one active sidebars, create a row and add them
-				if ( $bannerSidebars > 0 ) { ?>
-					<?php
-					// Work out the container class name based on the number of active banner sidebars
-					$containerClass = "grid_" . 12 / $bannerSidebars . "_of_12";
-
-					// Display the active banner sidebars
-					for ( $x=1; $x<=2; $x++ ) {
-						if ( is_active_sidebar( 'frontpage-banner'. $x ) ) { ?>
-							<div class="col <?php echo $containerClass?>">
-								<div class="widget-area" role="complementary">
-									<?php dynamic_sidebar( 'frontpage-banner'. $x ); ?>
-								</div> <!-- /.widget-area -->
-							</div> <!-- /.col.<?php echo $containerClass?> -->
-						<?php }
-					} ?>
-
-				<?php }
-			} ?>
+                    
+			<nav id="site-navigation" class="main-navigation" role="navigation">
+					<h3 class="menu-toggle assistive-text"><?php esc_html_e( 'Menu', 'ctw' ); ?></h3>
+					<div class="assistive-text skip-link"><a href="#content" title="<?php esc_attr_e( 'Skip to content', 'ctw' ); ?>"><?php esc_html_e( 'Skip to content', 'ctw' ); ?></a></div>
+					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu' ) ); ?>
+				</nav> <!-- /.site-navigation.main-navigation -->
 		</div> <!-- /.banner.row -->
 	</div> <!-- /#bannercontainer -->
 
 	<div id="maincontentcontainer">
-		<?php	do_action( 'qohelet_before_woocommerce' ); ?>
+            <?php if ( is_front_page() ) {
+                            // place the slider fom the ocws slider plugin
+                            // the OCWS Slider plugin is a necessary plugin
+                            echo ocwssl_function('ocwssl_function');
+				
+			} ?>
+		<?php	do_action( 'ctw_before_woocommerce' ); ?>

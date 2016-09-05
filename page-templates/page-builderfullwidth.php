@@ -4,8 +4,8 @@
  *
  * Description: Displays a browser full-width page for use with page builders like Visual Composer, Beaver Builder and the Divi Builder.
  *
- * @package Qohelet
- * @since Qohelet 0.0.1.2
+ * @package ctw
+ * @since ctw 0.0.1.2
  */
 
 get_header(); ?>

@@ -2,8 +2,8 @@
 /**
  * The template for displaying Search Results.
  *
- * @package Qohelet
- * @since Qohelet 0.0.1
+ * @package ctw
+ * @since ctw 0.0.1
  */
 
 get_header(); ?>
@@ -16,7 +16,7 @@ get_header(); ?>
 			<?php if ( have_posts() ) : ?>
 
 				<header class="page-header">
-					<h1 class="page-title"><?php printf( esc_html__( 'Search Results for: %s', 'qohelet' ), '<span>&ldquo;' . get_search_query() . '&rdquo;</span>' ); ?></h1>
+					<h1 class="page-title"><?php printf( esc_html__( 'Search Results for: %s', 'ctw' ), '<span>&ldquo;' . get_search_query() . '&rdquo;</span>' ); ?></h1>
 				</header>
 
 				<?php // Start the Loop ?>
@@ -24,7 +24,7 @@ get_header(); ?>
 					<?php get_template_part( 'content', get_post_format() ); ?>
 				<?php endwhile; ?>
 
-				<?php qohelet_content_nav( 'nav-below' ); ?>
+				<?php ctw_content_nav( 'nav-below' ); ?>
 
 			<?php else : ?>
 

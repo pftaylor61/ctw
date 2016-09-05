@@ -2,8 +2,8 @@
 /**
  * The template for displaying an archive page for Tags.
  *
- * @package Qohelet
- * @since Qohelet 0.0.1
+ * @package ctw
+ * @since ctw 0.0.1
  */
 
 get_header(); ?>
@@ -15,7 +15,7 @@ get_header(); ?>
 				<?php if ( have_posts() ) : ?>
 
 					<header class="archive-header">
-						<h1 class="archive-title"><?php printf( esc_html__( 'Tag Archives: %s', 'qohelet' ), '<span>' . single_tag_title( '', false ) . '</span>' ); ?></h1>
+						<h1 class="archive-title"><?php printf( esc_html__( 'Tag Archives: %s', 'ctw' ), '<span>' . single_tag_title( '', false ) . '</span>' ); ?></h1>
 
 						<?php if ( tag_description() ) { // Show an optional tag description ?>
 							<div class="archive-meta"><?php echo tag_description(); ?></div>
@@ -27,7 +27,7 @@ get_header(); ?>
 						<?php get_template_part( 'content', get_post_format() ); ?>
 					<?php endwhile; ?>
 
-					<?php qohelet_content_nav( 'nav-below' ); ?>
+					<?php ctw_content_nav( 'nav-below' ); ?>
 
 				<?php else : ?>
 

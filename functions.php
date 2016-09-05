@@ -1,16 +1,127 @@
 <?php
 /**
- * Qohelet functions and definitions
+ * ctw functions and definitions
  *
- * @package Qohelet
- * @since Qohelet 0.0.1
+ * @package ctw
+ * @since ctw 0.0.1
  */
+
+require_once get_template_directory().'/inc/class-tgm-plugin-activation.php';
+add_action( 'tgmpa_register', 'ctw__register_required_plugins' );
+
+function ctw__register_required_plugins() {
+    // determine which plugins are necessary for the theme
+    $plugins = array(
+      array(
+			'name'      => 'OCWS Slider Plugin',
+			'slug'      => 'ocws-slider',
+			'source'    => 'https://github.com/pftaylor61/ocws-slider/archive/master.zip',
+		),  
+    );
+    
+    $config = array(
+		'id'           => 'ctw',                 // Unique ID for hashing notices for multiple instances of TGMPA.
+		'default_path' => '',                      // Default absolute path to bundled plugins.
+		'menu'         => 'tgmpa-install-plugins', // Menu slug.
+		'parent_slug'  => 'themes.php',            // Parent menu slug.
+		'capability'   => 'edit_theme_options',    // Capability needed to view plugin install page, should be a capability associated with the parent menu used.
+		'has_notices'  => true,                    // Show admin notices or not.
+		'dismissable'  => true,                    // If false, a user cannot dismiss the nag message.
+		'dismiss_msg'  => '',                      // If 'dismissable' is false, this message will be output at top of nag.
+		'is_automatic' => false,                   // Automatically activate plugins after installation or not.
+		'message'      => '',                      // Message to output right before the plugins table.
+
+		/*
+		'strings'      => array(
+			'page_title'                      => __( 'Install Required Plugins', 'ctw' ),
+			'menu_title'                      => __( 'Install Plugins', 'ctw' ),
+			/* translators: %s: plugin name. * /
+			'installing'                      => __( 'Installing Plugin: %s', 'ctw' ),
+			/* translators: %s: plugin name. * /
+			'updating'                        => __( 'Updating Plugin: %s', 'ctw' ),
+			'oops'                            => __( 'Something went wrong with the plugin API.', 'ctw' ),
+			'notice_can_install_required'     => _n_noop(
+				/* translators: 1: plugin name(s). * /
+				'This theme requires the following plugin: %1$s.',
+				'This theme requires the following plugins: %1$s.',
+				'ctw'
+			),
+			'notice_can_install_recommended'  => _n_noop(
+				/* translators: 1: plugin name(s). * /
+				'This theme recommends the following plugin: %1$s.',
+				'This theme recommends the following plugins: %1$s.',
+				'ctw'
+			),
+			'notice_ask_to_update'            => _n_noop(
+				/* translators: 1: plugin name(s). * /
+				'The following plugin needs to be updated to its latest version to ensure maximum compatibility with this theme: %1$s.',
+				'The following plugins need to be updated to their latest version to ensure maximum compatibility with this theme: %1$s.',
+				'ctw'
+			),
+			'notice_ask_to_update_maybe'      => _n_noop(
+				/* translators: 1: plugin name(s). * /
+				'There is an update available for: %1$s.',
+				'There are updates available for the following plugins: %1$s.',
+				'ctw'
+			),
+			'notice_can_activate_required'    => _n_noop(
+				/* translators: 1: plugin name(s). * /
+				'The following required plugin is currently inactive: %1$s.',
+				'The following required plugins are currently inactive: %1$s.',
+				'ctw'
+			),
+			'notice_can_activate_recommended' => _n_noop(
+				/* translators: 1: plugin name(s). * /
+				'The following recommended plugin is currently inactive: %1$s.',
+				'The following recommended plugins are currently inactive: %1$s.',
+				'ctw'
+			),
+			'install_link'                    => _n_noop(
+				'Begin installing plugin',
+				'Begin installing plugins',
+				'ctw'
+			),
+			'update_link' 					  => _n_noop(
+				'Begin updating plugin',
+				'Begin updating plugins',
+				'ctw'
+			),
+			'activate_link'                   => _n_noop(
+				'Begin activating plugin',
+				'Begin activating plugins',
+				'ctw'
+			),
+			'return'                          => __( 'Return to Required Plugins Installer', 'ctw' ),
+			'plugin_activated'                => __( 'Plugin activated successfully.', 'ctw' ),
+			'activated_successfully'          => __( 'The following plugin was activated successfully:', 'ctw' ),
+			/* translators: 1: plugin name. * /
+			'plugin_already_active'           => __( 'No action taken. Plugin %1$s was already active.', 'ctw' ),
+			/* translators: 1: plugin name. * /
+			'plugin_needs_higher_version'     => __( 'Plugin not activated. A higher version of %s is needed for this theme. Please update the plugin.', 'ctw' ),
+			/* translators: 1: dashboard link. * /
+			'complete'                        => __( 'All plugins installed and activated successfully. %1$s', 'ctw' ),
+			'dismiss'                         => __( 'Dismiss this notice', 'ctw' ),
+			'notice_cannot_install_activate'  => __( 'There are one or more required or recommended plugins to install, update or activate.', 'ctw' ),
+			'contact_admin'                   => __( 'Please contact the administrator of this site for help.', 'ctw' ),
+
+			'nag_type'                        => '', // Determines admin notice type - can only be one of the typical WP notice classes, such as 'updated', 'update-nag', 'notice-warning', 'notice-info' or 'error'. Some of which may not work as expected in older WP versions.
+		),
+		*/
+	);
+
+	tgmpa( $plugins, $config );
+    
+} // end function ctw__register_required_plugins
 
 /**
  * Set the content width based on the theme's design and stylesheet.
  *
- * @since Qohelet 0.0.1
+ * @since ctw 0.0.1
  */
+
+// get sliding widget info
+require_once 'sliding-widgets/sliding-widgets.php';
+
 if ( ! isset( $content_width ) )
 	$content_width = 790; /* Default the embedded content width to 790px */
 
@@ -22,21 +133,32 @@ if ( ! isset( $content_width ) )
  * before the init hook. The init hook is too late for some features, such as indicating
  * support post thumbnails.
  *
- * @since Qohelet 0.0.1
+ * @since ctw 0.0.1
  *
  * @return void
  */
-if ( ! function_exists( 'qohelet_setup' ) ) {
-	function qohelet_setup() {
+if ( ! function_exists( 'ctw_setup' ) ) {
+	function ctw_setup() {
 		global $content_width;
+                define('OCWSCTW_SCRSM', trailingslashit(get_template_directory_uri()).'/assets/ctw400.png');
+                /*
+                 * The next few globals are to define default parameters for the sliding widget system
+                 */
+                define('OCWSCTW_IU', 'slidearrows.png');
+                define('OCWSCTW_IU_DEFAULT', trailingslashit(get_template_directory_uri()).'/assets/'.OCWSCTW_IU);
+                define('OCWSCTW_BGCOL', '#f5f2e7');
+                define('OCWSCTW_TXTCOL', '#030303');
+                define('OCWSCTW_IBWD', 30);
+                define('OCWSCTW_IBHT', 30);
+                define('OCWSCTW_ITWIDTH',350);
 
 		/**
 		 * Make theme available for translation
 		 * Translations can be filed in the /languages/ directory
-		 * If you're building a theme based on Qohelet, use a find and replace
-		 * to change 'qohelet' to the name of your theme in all the template files
+		 * If you're building a theme based on ctw, use a find and replace
+		 * to change 'ctw' to the name of your theme in all the template files
 		 */
-		load_theme_textdomain( 'qohelet', trailingslashit( get_template_directory() ) . 'languages' );
+		load_theme_textdomain( 'ctw', trailingslashit( get_template_directory() ) . 'languages' );
                 
                 if (!current_user_can('administrator') && !is_admin()) {
                     show_admin_bar(false);
@@ -56,7 +178,7 @@ if ( ! function_exists( 'qohelet_setup' ) ) {
 
 		// This theme uses wp_nav_menu() in one location
 		register_nav_menus( array(
-				'primary' => esc_html__( 'Primary Menu', 'qohelet' )
+				'primary' => esc_html__( 'Primary Menu', 'ctw' )
 			) );
 
 		// This theme supports a variety of post formats
@@ -68,15 +190,18 @@ if ( ! function_exists( 'qohelet_setup' ) ) {
 		// Enable support for Custom Backgrounds
 		add_theme_support( 'custom-background', array(
 				// Background color default
-				'default-color' => 'fff',
+				'default-color' => '5c4033',
 				// Background image default
-				'default-image' => trailingslashit( get_template_directory_uri() ) . 'images/cardboard.jpg'
+				'default-image' => trailingslashit( get_template_directory_uri() ) . 'images/ctw_bg.png',
+                                'default-repeat'         => 'repeat-x',
+                                'default-position-x'     => 'top'
+                                //'default-image' =>''
 			) );
 
 		// Enable support for Custom Headers (or in our case, a custom logo)
 		add_theme_support( 'custom-header', array(
 				// Header image default
-				'default-image' => trailingslashit( get_template_directory_uri() ) . 'images/logo.png',
+				'default-image' => trailingslashit( get_template_directory_uri() ) . 'images/ctw_logo_80x80.png',
 				// Header text display default
 				'header-text' => false,
 				// Header text color default
@@ -84,7 +209,7 @@ if ( ! function_exists( 'qohelet_setup' ) ) {
 				// Flexible width
 				'flex-width' => true,
 				// Header image width (in pixels)
-				'width' => 300,
+				'width' => 80,
 				// Flexible height
 				'flex-height' => true,
 				// Header image height (in pixels)
@@ -115,27 +240,27 @@ if ( ! function_exists( 'qohelet_setup' ) ) {
 		}
 
 		// If WooCommerce is running, check if we should be displaying the Breadcrumbs
-		if( qohelet_is_woocommerce_active() && !of_get_option( 'woocommerce_breadcrumbs', '1' ) ) {
-			add_action( 'init', 'qohelet_remove_woocommerce_breadcrumbs' );
+		if( ctw_is_woocommerce_active() && !of_get_option( 'woocommerce_breadcrumbs', '1' ) ) {
+			add_action( 'init', 'ctw_remove_woocommerce_breadcrumbs' );
 		}
 	}
 }
 
-add_action( 'after_setup_theme', 'qohelet_setup' );
+add_action( 'after_setup_theme', 'ctw_setup' );
 
 
 /**
  * Enable backwards compatability for title-tag support
  *
- * @since Qohelet 0.0.1
+ * @since ctw 0.0.1
  *
  * @return void
  */
 if ( ! function_exists( '_wp_render_title_tag' ) ) {
-	function qohelet_slug_render_title() { ?>
+	function ctw_slug_render_title() { ?>
 		<title><?php wp_title( '|', true, 'right' ); ?></title>
 	<?php }
-	add_action( 'wp_head', 'qohelet_slug_render_title' );
+	add_action( 'wp_head', 'ctw_slug_render_title' );
 }
 
 
@@ -144,23 +269,23 @@ if ( ! function_exists( '_wp_render_title_tag' ) ) {
  *
  * The use of Tenor Sans and Kreon by default is localized. For languages that use characters not supported by the fonts, the fonts can be disabled.
  *
- * @since Qohelet 0.0.1
+ * @since ctw 0.0.1
  *
  * @return string Font stylesheet or empty string if disabled.
  */
-function qohelet_fonts_url() {
+function ctw_fonts_url() {
 	$fonts_url = '';
 	$subsets = 'latin';
 
 	/* translators: If there are characters in your language that are not supported by Tenor Sans, translate this to 'off'.
 	 * Do not translate into your own language.
 	 */
-	$tenor_sans = _x( 'on', 'Tenor Sans font: on or off', 'qohelet' );
+	$tenor_sans = _x( 'on', 'Tenor Sans font: on or off', 'ctw' );
 
 	/* translators: To add an additional Tenor Sans character subset specific to your language, translate this to 'greek', 'cyrillic' or 'vietnamese'.
 	 * Do not translate into your own language.
 	 */
-	$subset = _x( 'no-subset', 'Tenor Sans font: add new subset (cyrillic)', 'qohelet' );
+	$subset = _x( 'no-subset', 'Tenor Sans font: add new subset (cyrillic)', 'ctw' );
 
 	if ( 'cyrillic' == $subset )
 		$subsets .= ',cyrillic';
@@ -168,7 +293,7 @@ function qohelet_fonts_url() {
 	/* translators: If there are characters in your language that are not supported by Kreon, translate this to 'off'.
 	 * Do not translate into your own language.
 	 */
-	$kreon = _x( 'on', 'Kreon font: on or off', 'qohelet' );
+	$kreon = _x( 'on', 'Kreon font: on or off', 'ctw' );
 
 	if ( 'off' !== $tenor_sans || 'off' !== $kreon ) {
 		$font_families = array();
@@ -194,13 +319,13 @@ function qohelet_fonts_url() {
 /**
  * Adds additional stylesheets to the TinyMCE editor if needed.
  *
- * @since Qohelet 0.0.1
+ * @since ctw 0.0.1
  *
  * @param string $mce_css CSS path to load in TinyMCE.
  * @return string The filtered CSS paths list.
  */
-function qohelet_mce_css( $mce_css ) {
-	$fonts_url = qohelet_fonts_url();
+function ctw_mce_css( $mce_css ) {
+	$fonts_url = ctw_fonts_url();
 
 	if ( empty( $fonts_url ) ) {
 		return $mce_css;
@@ -214,21 +339,21 @@ function qohelet_mce_css( $mce_css ) {
 
 	return $mce_css;
 }
-add_filter( 'mce_css', 'qohelet_mce_css' );
+add_filter( 'mce_css', 'ctw_mce_css' );
 
 
 /**
  * Register widgetized areas
  *
- * @since Qohelet 0.0.1
+ * @since ctw 0.0.1
  *
  * @return void
  */
-function qohelet_widgets_init() {
+function ctw_widgets_init() {
 	register_sidebar( array(
-			'name' => esc_html__( 'Main Sidebar', 'qohelet' ),
+			'name' => esc_html__( 'Main Sidebar', 'ctw' ),
 			'id' => 'sidebar-main',
-			'description' => esc_html__( 'Appears in the sidebar on posts and pages except the optional Front Page template, which has its own widgets', 'qohelet' ),
+			'description' => esc_html__( 'Appears in the sidebar on posts and pages except the optional Front Page template, which has its own widgets', 'ctw' ),
 			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 			'after_widget' => '</aside>',
 			'before_title' => '<h3 class="widget-title">',
@@ -236,9 +361,9 @@ function qohelet_widgets_init() {
 		) );
 
 	register_sidebar( array(
-			'name' => esc_html__( 'Blog Sidebar', 'qohelet' ),
+			'name' => esc_html__( 'Blog Sidebar', 'ctw' ),
 			'id' => 'sidebar-blog',
-			'description' => esc_html__( 'Appears in the sidebar on the blog and archive pages only', 'qohelet' ),
+			'description' => esc_html__( 'Appears in the sidebar on the blog and archive pages only', 'ctw' ),
 			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 			'after_widget' => '</aside>',
 			'before_title' => '<h3 class="widget-title">',
@@ -246,9 +371,9 @@ function qohelet_widgets_init() {
 		) );
 
 	register_sidebar( array(
-			'name' => esc_html__( 'Single Post Sidebar', 'qohelet' ),
+			'name' => esc_html__( 'Single Post Sidebar', 'ctw' ),
 			'id' => 'sidebar-single',
-			'description' => esc_html__( 'Appears in the sidebar on single posts only', 'qohelet' ),
+			'description' => esc_html__( 'Appears in the sidebar on single posts only', 'ctw' ),
 			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 			'after_widget' => '</aside>',
 			'before_title' => '<h3 class="widget-title">',
@@ -256,19 +381,23 @@ function qohelet_widgets_init() {
 		) );
 
 	register_sidebar( array(
-			'name' => esc_html__( 'Page Sidebar', 'qohelet' ),
+			'name' => esc_html__( 'Page Sidebar', 'ctw' ),
 			'id' => 'sidebar-page',
-			'description' => esc_html__( 'Appears in the sidebar on pages only', 'qohelet' ),
+			'description' => esc_html__( 'Appears in the sidebar on pages only', 'ctw' ),
 			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 			'after_widget' => '</aside>',
 			'before_title' => '<h3 class="widget-title">',
 			'after_title' => '</h3>'
 		) );
 
-	register_sidebar( array(
-			'name' => esc_html__( 'First Front Page Banner Widget', 'qohelet' ),
+	/*
+         * I am not having any widgets on the first page (apart from sliding widgets)
+         * so I have commented out the widget areas.
+         * They can easily be re-introduced.
+        register_sidebar( array(
+			'name' => esc_html__( 'First Front Page Banner Widget', 'ctw' ),
 			'id' => 'frontpage-banner1',
-			'description' => esc_html__( 'Appears in the banner area on the Front Page', 'qohelet' ),
+			'description' => esc_html__( 'Appears in the banner area on the Front Page', 'ctw' ),
 			'before_widget' => '<div id="%1$s" class="widget %2$s">',
 			'after_widget' => '</div>',
 			'before_title' => '<h1 class="widget-title">',
@@ -276,9 +405,9 @@ function qohelet_widgets_init() {
 		) );
 
 	register_sidebar( array(
-			'name' => esc_html__( 'Second Front Page Banner Widget', 'qohelet' ),
+			'name' => esc_html__( 'Second Front Page Banner Widget', 'ctw' ),
 			'id' => 'frontpage-banner2',
-			'description' => esc_html__( 'Appears in the banner area on the Front Page', 'qohelet' ),
+			'description' => esc_html__( 'Appears in the banner area on the Front Page', 'ctw' ),
 			'before_widget' => '<div id="%1$s" class="widget %2$s">',
 			'after_widget' => '</div>',
 			'before_title' => '<h1 class="widget-title">',
@@ -286,9 +415,9 @@ function qohelet_widgets_init() {
 		) );
 
 	register_sidebar( array(
-			'name' => esc_html__( 'First Front Page Widget Area', 'qohelet' ),
+			'name' => esc_html__( 'First Front Page Widget Area', 'ctw' ),
 			'id' => 'sidebar-homepage1',
-			'description' => esc_html__( 'Appears when using the optional Front Page template with a page set as Static Front Page', 'qohelet' ),
+			'description' => esc_html__( 'Appears when using the optional Front Page template with a page set as Static Front Page', 'ctw' ),
 			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 			'after_widget' => '</aside>',
 			'before_title' => '<h3 class="widget-title">',
@@ -296,9 +425,9 @@ function qohelet_widgets_init() {
 		) );
 
 	register_sidebar( array(
-			'name' => esc_html__( 'Second Front Page Widget Area', 'qohelet' ),
+			'name' => esc_html__( 'Second Front Page Widget Area', 'ctw' ),
 			'id' => 'sidebar-homepage2',
-			'description' => esc_html__( 'Appears when using the optional Front Page template with a page set as Static Front Page', 'qohelet' ),
+			'description' => esc_html__( 'Appears when using the optional Front Page template with a page set as Static Front Page', 'ctw' ),
 			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 			'after_widget' => '</aside>',
 			'before_title' => '<h3 class="widget-title">',
@@ -306,9 +435,9 @@ function qohelet_widgets_init() {
 		) );
 
 	register_sidebar( array(
-			'name' => esc_html__( 'Third Front Page Widget Area', 'qohelet' ),
+			'name' => esc_html__( 'Third Front Page Widget Area', 'ctw' ),
 			'id' => 'sidebar-homepage3',
-			'description' => esc_html__( 'Appears when using the optional Front Page template with a page set as Static Front Page', 'qohelet' ),
+			'description' => esc_html__( 'Appears when using the optional Front Page template with a page set as Static Front Page', 'ctw' ),
 			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 			'after_widget' => '</aside>',
 			'before_title' => '<h3 class="widget-title">',
@@ -316,19 +445,21 @@ function qohelet_widgets_init() {
 		) );
 
 	register_sidebar( array(
-			'name' => esc_html__( 'Fourth Front Page Widget Area', 'qohelet' ),
+			'name' => esc_html__( 'Fourth Front Page Widget Area', 'ctw' ),
 			'id' => 'sidebar-homepage4',
-			'description' => esc_html__( 'Appears when using the optional Front Page template with a page set as Static Front Page', 'qohelet' ),
+			'description' => esc_html__( 'Appears when using the optional Front Page template with a page set as Static Front Page', 'ctw' ),
 			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 			'after_widget' => '</aside>',
 			'before_title' => '<h3 class="widget-title">',
 			'after_title' => '</h3>'
 		) );
+         * 
+         */
 
 	register_sidebar( array(
-			'name' => esc_html__( 'First Footer Widget Area', 'qohelet' ),
+			'name' => esc_html__( 'First Footer Widget Area', 'ctw' ),
 			'id' => 'sidebar-footer1',
-			'description' => esc_html__( 'Appears in the footer sidebar', 'qohelet' ),
+			'description' => esc_html__( 'Appears in the footer sidebar', 'ctw' ),
 			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 			'after_widget' => '</aside>',
 			'before_title' => '<h3 class="widget-title">',
@@ -336,9 +467,9 @@ function qohelet_widgets_init() {
 		) );
 
 	register_sidebar( array(
-			'name' => esc_html__( 'Second Footer Widget Area', 'qohelet' ),
+			'name' => esc_html__( 'Second Footer Widget Area', 'ctw' ),
 			'id' => 'sidebar-footer2',
-			'description' => esc_html__( 'Appears in the footer sidebar', 'qohelet' ),
+			'description' => esc_html__( 'Appears in the footer sidebar', 'ctw' ),
 			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 			'after_widget' => '</aside>',
 			'before_title' => '<h3 class="widget-title">',
@@ -346,9 +477,9 @@ function qohelet_widgets_init() {
 		) );
 
 	register_sidebar( array(
-			'name' => esc_html__( 'Third Footer Widget Area', 'qohelet' ),
+			'name' => esc_html__( 'Third Footer Widget Area', 'ctw' ),
 			'id' => 'sidebar-footer3',
-			'description' => esc_html__( 'Appears in the footer sidebar', 'qohelet' ),
+			'description' => esc_html__( 'Appears in the footer sidebar', 'ctw' ),
 			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 			'after_widget' => '</aside>',
 			'before_title' => '<h3 class="widget-title">',
@@ -356,26 +487,26 @@ function qohelet_widgets_init() {
 		) );
 
 	register_sidebar( array(
-			'name' => esc_html__( 'Fourth Footer Widget Area', 'qohelet' ),
+			'name' => esc_html__( 'Fourth Footer Widget Area', 'ctw' ),
 			'id' => 'sidebar-footer4',
-			'description' => esc_html__( 'Appears in the footer sidebar', 'qohelet' ),
+			'description' => esc_html__( 'Appears in the footer sidebar', 'ctw' ),
 			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 			'after_widget' => '</aside>',
 			'before_title' => '<h3 class="widget-title">',
 			'after_title' => '</h3>'
 		) );
 }
-add_action( 'widgets_init', 'qohelet_widgets_init' );
+add_action( 'widgets_init', 'ctw_widgets_init' );
 
 
 /**
  * Enqueue scripts and styles
  *
- * @since Qohelet 0.0.1
+ * @since ctw 0.0.1
  *
  * @return void
  */
-function qohelet_scripts_styles() {
+function ctw_scripts_styles() {
 
 	/**
 	 * Register and enqueue our stylesheets
@@ -400,13 +531,13 @@ function qohelet_scripts_styles() {
 	 *
 	 * To disable in a child theme, use wp_dequeue_style()
 	 * function mytheme_dequeue_fonts() {
-	 *     wp_dequeue_style( 'qohelet-fonts' );
+	 *     wp_dequeue_style( 'ctw-fonts' );
 	 * }
 	 * add_action( 'wp_enqueue_scripts', 'mytheme_dequeue_fonts', 11 );
 	 */
-	$fonts_url = qohelet_fonts_url();
+	$fonts_url = ctw_fonts_url();
 	if ( !empty( $fonts_url ) ) {
-		wp_enqueue_style( 'qohelet-fonts', esc_url_raw( $fonts_url ), array(), null );
+		wp_enqueue_style( 'ctw-fonts', esc_url_raw( $fonts_url ), array(), null );
 	}
 
 	// If using a child theme, auto-load the parent theme style.
@@ -441,9 +572,9 @@ function qohelet_scripts_styles() {
 		wp_enqueue_script( 'commentvalidate' );
 		wp_localize_script( 'commentvalidate', 'comments_object', array(
 			'req' => get_option( 'require_name_email' ),
-			'author'  => esc_html__( 'Please enter your name', 'qohelet' ),
-			'email'  => esc_html__( 'Please enter a valid email address', 'qohelet' ),
-			'comment' => esc_html__( 'Please add a comment', 'qohelet' ) )
+			'author'  => esc_html__( 'Please enter your name', 'ctw' ),
+			'email'  => esc_html__( 'Please enter a valid email address', 'ctw' ),
+			'comment' => esc_html__( 'Please add a comment', 'ctw' ) )
 		);
 	}
 
@@ -452,19 +583,19 @@ function qohelet_scripts_styles() {
 	//wp_enqueue_script( 'small-menu' );
 
 }
-add_action( 'wp_enqueue_scripts', 'qohelet_scripts_styles' );
+add_action( 'wp_enqueue_scripts', 'ctw_scripts_styles' );
 
 
 /**
  * Displays navigation to next/previous pages when applicable.
  *
- * @since Qohelet 0.0.1
+ * @since ctw 0.0.1
  *
  * @param string html ID
  * @return void
  */
-if ( ! function_exists( 'qohelet_content_nav' ) ) {
-	function qohelet_content_nav( $nav_id ) {
+if ( ! function_exists( 'ctw_content_nav' ) ) {
+	function ctw_content_nav( $nav_id ) {
 		global $wp_query;
 		$big = 999999999; // need an unlikely integer
 
@@ -474,12 +605,12 @@ if ( ! function_exists( 'qohelet_content_nav' ) ) {
 		}
 		?>
 		<nav role="navigation" id="<?php echo $nav_id; ?>" class="<?php echo $nav_class; ?>">
-			<h3 class="assistive-text"><?php esc_html_e( 'Post navigation', 'qohelet' ); ?></h3>
+			<h3 class="assistive-text"><?php esc_html_e( 'Post navigation', 'ctw' ); ?></h3>
 
 			<?php if ( is_single() ) { // navigation links for single posts ?>
 
-				<?php previous_post_link( '<div class="nav-previous">%link</div>', '<span class="meta-nav">' . _x( '<i class="fa fa-angle-left"></i>', 'Previous post link', 'qohelet' ) . '</span> %title' ); ?>
-				<?php next_post_link( '<div class="nav-next">%link</div>', '%title <span class="meta-nav">' . _x( '<i class="fa fa-angle-right"></i>', 'Next post link', 'qohelet' ) . '</span>' ); ?>
+				<?php previous_post_link( '<div class="nav-previous">%link</div>', '<span class="meta-nav">' . _x( '<i class="fa fa-angle-left"></i>', 'Previous post link', 'ctw' ) . '</span> %title' ); ?>
+				<?php next_post_link( '<div class="nav-next">%link</div>', '%title <span class="meta-nav">' . _x( '<i class="fa fa-angle-right"></i>', 'Next post link', 'ctw' ) . '</span>' ); ?>
 
 			<?php } 
 			elseif ( $wp_query->max_num_pages > 1 && ( is_home() || is_archive() || is_search() ) ) { // navigation links for home, archive, and search pages ?>
@@ -490,9 +621,9 @@ if ( ! function_exists( 'qohelet_content_nav' ) ) {
 					'current' => max( 1, get_query_var( 'paged' ) ),
 					'total' => $wp_query->max_num_pages,
 					'type' => 'list',
-					'prev_text' => wp_kses( __( '<i class="fa fa-angle-left"></i> Previous', 'qohelet' ), array( 'i' => array( 
+					'prev_text' => wp_kses( __( '<i class="fa fa-angle-left"></i> Previous', 'ctw' ), array( 'i' => array( 
 						'class' => array() ) ) ),
-					'next_text' => wp_kses( __( 'Next <i class="fa fa-angle-right"></i>', 'qohelet' ), array( 'i' => array( 
+					'next_text' => wp_kses( __( 'Next <i class="fa fa-angle-right"></i>', 'ctw' ), array( 'i' => array( 
 						'class' => array() ) ) )
 				) ); ?>
 
@@ -508,20 +639,20 @@ if ( ! function_exists( 'qohelet_content_nav' ) ) {
  * Template for comments and pingbacks.
  *
  * To override this walker in a child theme without modifying the comments template
- * simply create your own qohelet_comment(), and that function will be used instead.
+ * simply create your own ctw_comment(), and that function will be used instead.
  *
  * Used as a callback by wp_list_comments() for displaying the comments.
  * (Note the lack of a trailing </li>. WordPress will add it itself once it's done listing any children and whatnot)
  *
- * @since Qohelet 0.0.1
+ * @since ctw 0.0.1
  *
  * @param array Comment
  * @param array Arguments
  * @param integer Comment depth
  * @return void
  */
-if ( ! function_exists( 'qohelet_comment' ) ) {
-	function qohelet_comment( $comment, $args, $depth ) {
+if ( ! function_exists( 'ctw_comment' ) ) {
+	function ctw_comment( $comment, $args, $depth ) {
 		$GLOBALS['comment'] = $comment;
 		switch ( $comment->comment_type ) {
 		case 'pingback' :
@@ -529,7 +660,7 @@ if ( ! function_exists( 'qohelet_comment' ) ) {
 			// Display trackbacks differently than normal comments ?>
 			<li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
 				<article id="comment-<?php comment_ID(); ?>" class="pingback">
-					<p><?php esc_html_e( 'Pingback:', 'qohelet' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link( esc_html__( '(Edit)', 'qohelet' ), '<span class="edit-link">', '</span>' ); ?></p>
+					<p><?php esc_html_e( 'Pingback:', 'ctw' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link( esc_html__( '(Edit)', 'ctw' ), '<span class="edit-link">', '</span>' ); ?></p>
 				</article> <!-- #comment-##.pingback -->
 			<?php
 			break;
@@ -544,28 +675,28 @@ if ( ! function_exists( 'qohelet_comment' ) ) {
 						printf( '<cite class="fn">%1$s %2$s</cite>',
 							get_comment_author_link(),
 							// If current post author is also comment author, make it known visually.
-							( $comment->user_id === $post->post_author ) ? '<span> ' . esc_html__( 'Post author', 'qohelet' ) . '</span>' : '' );
+							( $comment->user_id === $post->post_author ) ? '<span> ' . esc_html__( 'Post author', 'ctw' ) . '</span>' : '' );
 						printf( '<a href="%1$s" title="Posted %2$s"><time itemprop="datePublished" datetime="%3$s">%4$s</time></a>',
 							esc_url( get_comment_link( $comment->comment_ID ) ),
-							sprintf( esc_html__( '%1$s @ %2$s', 'qohelet' ), esc_html( get_comment_date() ), esc_attr( get_comment_time() ) ),
+							sprintf( esc_html__( '%1$s @ %2$s', 'ctw' ), esc_html( get_comment_date() ), esc_attr( get_comment_time() ) ),
 							get_comment_time( 'c' ),
 							/* Translators: 1: date, 2: time */
-							sprintf( esc_html__( '%1$s at %2$s', 'qohelet' ), get_comment_date(), get_comment_time() )
+							sprintf( esc_html__( '%1$s at %2$s', 'ctw' ), get_comment_date(), get_comment_time() )
 						);
 						?>
 					</header> <!-- .comment-meta -->
 
 					<?php if ( '0' == $comment->comment_approved ) { ?>
-						<p class="comment-awaiting-moderation"><?php esc_html_e( 'Your comment is awaiting moderation.', 'qohelet' ); ?></p>
+						<p class="comment-awaiting-moderation"><?php esc_html_e( 'Your comment is awaiting moderation.', 'ctw' ); ?></p>
 					<?php } ?>
 
 					<section class="comment-content comment">
 						<?php comment_text(); ?>
-						<?php edit_comment_link( esc_html__( 'Edit', 'qohelet' ), '<p class="edit-link">', '</p>' ); ?>
+						<?php edit_comment_link( esc_html__( 'Edit', 'ctw' ), '<p class="edit-link">', '</p>' ); ?>
 					</section> <!-- .comment-content -->
 
 					<div class="reply">
-						<?php comment_reply_link( array_merge( $args, array( 'reply_text' => wp_kses( __( 'Reply <span>&darr;</span>', 'qohelet' ), array( 'span' => array() ) ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+						<?php comment_reply_link( array_merge( $args, array( 'reply_text' => wp_kses( __( 'Reply <span>&darr;</span>', 'ctw' ), array( 'span' => array() ) ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
 					</div> <!-- .reply -->
 				</article> <!-- #comment-## -->
 			<?php
@@ -578,57 +709,57 @@ if ( ! function_exists( 'qohelet_comment' ) ) {
 /**
  * Update the Comments form so that the 'required' span is contained within the form label.
  *
- * @since Qohelet 0.0.1
+ * @since ctw 0.0.1
  *
  * @param string Comment form fields html
  * @return string The updated comment form fields html
  */
-function qohelet_comment_form_default_fields( $fields ) {
+function ctw_comment_form_default_fields( $fields ) {
 
 	$commenter = wp_get_current_commenter();
 	$req = get_option( 'require_name_email' );
 	$aria_req = ( $req ? ' aria-required="true"' : "" );
 
-	$fields[ 'author' ] = '<p class="comment-form-author">' . '<label for="author">' . esc_html__( 'Name', 'qohelet' ) . ( $req ? ' <span class="required">*</span>' : '' ) . '</label> ' . '<input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30"' . $aria_req . ' /></p>';
+	$fields[ 'author' ] = '<p class="comment-form-author">' . '<label for="author">' . esc_html__( 'Name', 'ctw' ) . ( $req ? ' <span class="required">*</span>' : '' ) . '</label> ' . '<input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30"' . $aria_req . ' /></p>';
 
-	$fields[ 'email' ] =  '<p class="comment-form-email"><label for="email">' . esc_html__( 'Email', 'qohelet' ) . ( $req ? ' <span class="required">*</span>' : '' ) . '</label> ' . '<input id="email" name="email" type="text" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" size="30"' . $aria_req . ' /></p>';
+	$fields[ 'email' ] =  '<p class="comment-form-email"><label for="email">' . esc_html__( 'Email', 'ctw' ) . ( $req ? ' <span class="required">*</span>' : '' ) . '</label> ' . '<input id="email" name="email" type="text" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" size="30"' . $aria_req . ' /></p>';
 
-	$fields[ 'url' ] =  '<p class="comment-form-url"><label for="url">' . esc_html__( 'Website', 'qohelet' ) . '</label>' . '<input id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" /></p>';
+	$fields[ 'url' ] =  '<p class="comment-form-url"><label for="url">' . esc_html__( 'Website', 'ctw' ) . '</label>' . '<input id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" /></p>';
 
 	return $fields;
 
 }
-add_action( 'comment_form_default_fields', 'qohelet_comment_form_default_fields' );
+add_action( 'comment_form_default_fields', 'ctw_comment_form_default_fields' );
 
 
 /**
  * Update the Comments form to add a 'required' span to the Comment textarea within the form label, because it's pointless 
  * submitting a comment that doesn't actually have any text in the comment field!
  *
- * @since Qohelet 0.0.1
+ * @since ctw 0.0.1
  *
  * @param string Comment form textarea html
  * @return string The updated comment form textarea html
  */
-function qohelet_comment_form_field_comment( $field ) {
+function ctw_comment_form_field_comment( $field ) {
 
-	$field = '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun', 'qohelet' ) . ' <span class="required">*</span></label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>';
+	$field = '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun', 'ctw' ) . ' <span class="required">*</span></label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>';
 
 	return $field;
 
 }
-add_action( 'comment_form_field_comment', 'qohelet_comment_form_field_comment' );
+add_action( 'comment_form_field_comment', 'ctw_comment_form_field_comment' );
 
 
 /**
  * Prints HTML with meta information for current post: author and date
  *
- * @since Qohelet 0.0.1
+ * @since ctw 0.0.1
  *
  * @return void
  */
-if ( ! function_exists( 'qohelet_posted_on' ) ) {
-	function qohelet_posted_on() {
+if ( ! function_exists( 'ctw_posted_on' ) ) {
+	function ctw_posted_on() {
 		$post_icon = '';
 		switch ( get_post_format() ) {
 			case 'aside':
@@ -667,7 +798,7 @@ if ( ! function_exists( 'qohelet_posted_on' ) ) {
 		$date = sprintf( '<i class="fa %1$s"></i> <a href="%2$s" title="Posted %3$s" rel="bookmark"><time class="entry-date" datetime="%4$s" itemprop="datePublished">%5$s</time></a>',
 			$post_icon,
 			esc_url( get_permalink() ),
-			sprintf( esc_html__( '%1$s @ %2$s', 'qohelet' ), esc_html( get_the_date() ), esc_attr( get_the_time() ) ),
+			sprintf( esc_html__( '%1$s @ %2$s', 'ctw' ), esc_html( get_the_date() ), esc_attr( get_the_time() ) ),
 			esc_attr( get_the_date( 'c' ) ),
 			esc_html( get_the_date() )
 		);
@@ -675,22 +806,22 @@ if ( ! function_exists( 'qohelet_posted_on' ) ) {
 		// Translators: 1: Date link 2: Author link 3: Categories 4: No. of Comments
 		$author = sprintf( '<i class="fa fa-pencil"></i> <address class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" rel="author">%3$s</a></address>',
 			esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
-			esc_attr( sprintf( esc_html__( 'View all posts by %s', 'qohelet' ), get_the_author() ) ),
+			esc_attr( sprintf( esc_html__( 'View all posts by %s', 'ctw' ), get_the_author() ) ),
 			get_the_author()
 		);
 
 		// Return the Categories as a list
-		$categories_list = get_the_category_list( esc_html__( ' ', 'qohelet' ) );
+		$categories_list = get_the_category_list( esc_html__( ' ', 'ctw' ) );
 
 		// Translators: 1: Permalink 2: Title 3: No. of Comments
 		$comments = sprintf( '<span class="comments-link"><i class="fa fa-comment"></i> <a href="%1$s" title="%2$s">%3$s</a></span>',
 			esc_url( get_comments_link() ),
-			esc_attr( esc_html__( 'Comment on ' , 'qohelet' ) . the_title_attribute( 'echo=0' ) ),
-			( get_comments_number() > 0 ? sprintf( _n( '%1$s Comment', '%1$s Comments', get_comments_number(), 'qohelet' ), get_comments_number() ) : esc_html__( 'No Comments', 'qohelet' ) )
+			esc_attr( esc_html__( 'Comment on ' , 'ctw' ) . the_title_attribute( 'echo=0' ) ),
+			( get_comments_number() > 0 ? sprintf( _n( '%1$s Comment', '%1$s Comments', get_comments_number(), 'ctw' ), get_comments_number() ) : esc_html__( 'No Comments', 'ctw' ) )
 		);
 
 		// Translators: 1: Date 2: Author 3: Categories 4: Comments
-		printf( wp_kses( __( '<div class="header-meta">%1$s%2$s<span class="post-categories">%3$s</span>%4$s</div>', 'qohelet' ), array( 
+		printf( wp_kses( __( '<div class="header-meta">%1$s%2$s<span class="post-categories">%3$s</span>%4$s</div>', 'ctw' ), array( 
 			'div' => array ( 
 				'class' => array() ), 
 			'span' => array( 
@@ -707,21 +838,21 @@ if ( ! function_exists( 'qohelet_posted_on' ) ) {
 /**
  * Prints HTML with meta information for current post: categories, tags, permalink
  *
- * @since Qohelet 0.0.1
+ * @since ctw 0.0.1
  *
  * @return void
  */
-if ( ! function_exists( 'qohelet_entry_meta' ) ) {
-	function qohelet_entry_meta() {
+if ( ! function_exists( 'ctw_entry_meta' ) ) {
+	function ctw_entry_meta() {
 		// Return the Tags as a list
 		$tag_list = "";
 		if ( get_the_tag_list() ) {
-			$tag_list = get_the_tag_list( '<span class="post-tags">', esc_html__( ' ', 'qohelet' ), '</span>' );
+			$tag_list = get_the_tag_list( '<span class="post-tags">', esc_html__( ' ', 'ctw' ), '</span>' );
 		}
 
 		// Translators: 1 is tag
 		if ( $tag_list ) {
-			printf( wp_kses( __( '<i class="fa fa-tag"></i> %1$s', 'qohelet' ), array( 'i' => array( 'class' => array() ) ) ), $tag_list );
+			printf( wp_kses( __( '<i class="fa fa-tag"></i> %1$s', 'ctw' ), array( 'i' => array( 'class' => array() ) ) ), $tag_list );
 		}
 	}
 }
@@ -730,28 +861,28 @@ if ( ! function_exists( 'qohelet_entry_meta' ) ) {
 /**
  * Adjusts content_width value for full-width templates and attachments
  *
- * @since Qohelet 0.0.1
+ * @since ctw 0.0.1
  *
  * @return void
  */
-function qohelet_content_width() {
+function ctw_content_width() {
 	if ( is_page_template( 'page-templates/full-width.php' ) || is_attachment() ) {
 		global $content_width;
 		$content_width = 1200;
 	}
 }
-add_action( 'template_redirect', 'qohelet_content_width' );
+add_action( 'template_redirect', 'ctw_content_width' );
 
 
 /**
  * Change the "read more..." link so it links to the top of the page rather than part way down
  *
- * @since Qohelet 0.0.1
+ * @since ctw 0.0.1
  *
  * @param string The 'Read more' link
  * @return string The link to the post url without the more tag appended on the end
  */
-function qohelet_remove_more_jump_link( $link ) {
+function ctw_remove_more_jump_link( $link ) {
 	$offset = strpos( $link, '#more-' );
 	if ( $offset ) {
 		$end = strpos( $link, '"', $offset );
@@ -761,45 +892,45 @@ function qohelet_remove_more_jump_link( $link ) {
 	}
 	return $link;
 }
-add_filter( 'the_content_more_link', 'qohelet_remove_more_jump_link' );
+add_filter( 'the_content_more_link', 'ctw_remove_more_jump_link' );
 
 
 /**
  * Returns a "Continue Reading" link for excerpts
  *
- * @since Qohelet 0.0.1
+ * @since ctw 0.0.1
  *
  * @return string The 'Continue reading' link
  */
-function qohelet_continue_reading_link() {
-	return '&hellip;<p><a class="more-link" href="'. esc_url( get_permalink() ) . '" title="' . esc_html__( 'Continue reading', 'qohelet' ) . ' &lsquo;' . get_the_title() . '&rsquo;">' . wp_kses( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'qohelet' ), array( 'span' => array( 
+function ctw_continue_reading_link() {
+	return '&hellip;<p><a class="more-link" href="'. esc_url( get_permalink() ) . '" title="' . esc_html__( 'Continue reading', 'ctw' ) . ' &lsquo;' . get_the_title() . '&rsquo;">' . wp_kses( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'ctw' ), array( 'span' => array( 
 			'class' => array() ) ) ) . '</a></p>';
 }
 
 
 /**
- * Replaces "[...]" (appended to automatically generated excerpts) with the qohelet_continue_reading_link().
+ * Replaces "[...]" (appended to automatically generated excerpts) with the ctw_continue_reading_link().
  *
- * @since Qohelet 0.0.1
+ * @since ctw 0.0.1
  *
  * @param string Auto generated excerpt
  * @return string The filtered excerpt
  */
-function qohelet_auto_excerpt_more( $more ) {
-	return qohelet_continue_reading_link();
+function ctw_auto_excerpt_more( $more ) {
+	return ctw_continue_reading_link();
 }
-add_filter( 'excerpt_more', 'qohelet_auto_excerpt_more' );
+add_filter( 'excerpt_more', 'ctw_auto_excerpt_more' );
 
 
 /**
  * Extend the user contact methods to include Twitter, Facebook and Google+
  *
- * @since Qohelet 0.0.1
+ * @since ctw 0.0.1
  *
  * @param array List of user contact methods
  * @return array The filtered list of updated user contact methods
  */
-function qohelet_new_contactmethods( $contactmethods ) {
+function ctw_new_contactmethods( $contactmethods ) {
 	// Add Twitter
 	$contactmethods['twitter'] = 'Twitter';
 
@@ -811,19 +942,19 @@ function qohelet_new_contactmethods( $contactmethods ) {
 
 	return $contactmethods;
 }
-add_filter( 'user_contactmethods', 'qohelet_new_contactmethods', 10, 1 );
+add_filter( 'user_contactmethods', 'ctw_new_contactmethods', 10, 1 );
 
 
 /**
  * Add a filter for wp_nav_menu to add an extra class for menu items that have children (ie. sub menus)
  * This allows us to perform some nicer styling on our menu items that have multiple levels (eg. dropdown menu arrows)
  *
- * @since Qohelet 0.0.1
+ * @since ctw 0.0.1
  *
  * @param Menu items
  * @return array An extra css class is on menu items with children
  */
-function qohelet_add_menu_parent_class( $items ) {
+function ctw_add_menu_parent_class( $items ) {
 
 	$parents = array();
 	foreach ( $items as $item ) {
@@ -840,13 +971,13 @@ function qohelet_add_menu_parent_class( $items ) {
 
 	return $items;
 }
-add_filter( 'wp_nav_menu_objects', 'qohelet_add_menu_parent_class' );
+add_filter( 'wp_nav_menu_objects', 'ctw_add_menu_parent_class' );
 
 
 /**
  * Add Filter to allow Shortcodes to work in the Sidebar
  *
- * @since Qohelet 0.0.1
+ * @since ctw 0.0.1
  */
 add_filter( 'widget_text', 'do_shortcode' );
 
@@ -854,29 +985,29 @@ add_filter( 'widget_text', 'do_shortcode' );
 /**
  * Return an unordered list of linked social media icons, based on the urls provided in the Theme Options
  *
- * @since Qohelet 0.0.1
+ * @since ctw 0.0.1
  *
  * @return string Unordered list of linked social media icons
  */
-if ( ! function_exists( 'qohelet_get_social_media' ) ) {
-	function qohelet_get_social_media() {
+if ( ! function_exists( 'ctw_get_social_media' ) ) {
+	function ctw_get_social_media() {
 		$output = '';
 		$icons = array(
-			array( 'url' => of_get_option( 'social_twitter', '' ), 'icon' => 'fa-twitter', 'title' => esc_html__( 'Follow me on Twitter', 'qohelet' ) ),
-			array( 'url' => of_get_option( 'social_facebook', '' ), 'icon' => 'fa-facebook', 'title' => esc_html__( 'Like us on Facebook', 'qohelet' ) ),
-			array( 'url' => of_get_option( 'social_googleplus', '' ), 'icon' => 'fa-google-plus', 'title' => esc_html__( 'Connect with me on Google+', 'qohelet' ) ),
-			array( 'url' => of_get_option( 'social_linkedin', '' ), 'icon' => 'fa-linkedin', 'title' => esc_html__( 'Connect with me on LinkedIn', 'qohelet' ) ),
-			array( 'url' => of_get_option( 'social_slideshare', '' ), 'icon' => 'fa-slideshare', 'title' => esc_html__( 'Follow me on SlideShare', 'qohelet' ) ),
-			array( 'url' => of_get_option( 'social_dribbble', '' ), 'icon' => 'fa-dribbble', 'title' => esc_html__( 'Follow me on Dribbble', 'qohelet' ) ),
-			array( 'url' => of_get_option( 'social_tumblr', '' ), 'icon' => 'fa-tumblr', 'title' => esc_html__( 'Follow me on Tumblr', 'qohelet' ) ),
-			array( 'url' => of_get_option( 'social_github', '' ), 'icon' => 'fa-github', 'title' => esc_html__( 'Fork me on GitHub', 'qohelet' ) ),
-			array( 'url' => of_get_option( 'social_bitbucket', '' ), 'icon' => 'fa-bitbucket', 'title' => esc_html__( 'Fork me on Bitbucket', 'qohelet' ) ),
-			array( 'url' => of_get_option( 'social_foursquare', '' ), 'icon' => 'fa-foursquare', 'title' => esc_html__( 'Follow me on Foursquare', 'qohelet' ) ),
-			array( 'url' => of_get_option( 'social_youtube', '' ), 'icon' => 'fa-youtube', 'title' => esc_html__( 'Subscribe to me on YouTube', 'qohelet' ) ),
-			array( 'url' => of_get_option( 'social_instagram', '' ), 'icon' => 'fa-instagram', 'title' => esc_html__( 'Follow me on Instagram', 'qohelet' ) ),
-			array( 'url' => of_get_option( 'social_flickr', '' ), 'icon' => 'fa-flickr', 'title' => esc_html__( 'Connect with me on Flickr', 'qohelet' ) ),
-			array( 'url' => of_get_option( 'social_pinterest', '' ), 'icon' => 'fa-pinterest', 'title' => esc_html__( 'Follow me on Pinterest', 'qohelet' ) ),
-			array( 'url' => of_get_option( 'social_rss', '' ), 'icon' => 'fa-rss', 'title' => esc_html__( 'Subscribe to my RSS Feed', 'qohelet' ) )
+			array( 'url' => of_get_option( 'social_twitter', '' ), 'icon' => 'fa-twitter', 'title' => esc_html__( 'Follow me on Twitter', 'ctw' ) ),
+			array( 'url' => of_get_option( 'social_facebook', '' ), 'icon' => 'fa-facebook', 'title' => esc_html__( 'Like us on Facebook', 'ctw' ) ),
+			array( 'url' => of_get_option( 'social_googleplus', '' ), 'icon' => 'fa-google-plus', 'title' => esc_html__( 'Connect with me on Google+', 'ctw' ) ),
+			array( 'url' => of_get_option( 'social_linkedin', '' ), 'icon' => 'fa-linkedin', 'title' => esc_html__( 'Connect with me on LinkedIn', 'ctw' ) ),
+			array( 'url' => of_get_option( 'social_slideshare', '' ), 'icon' => 'fa-slideshare', 'title' => esc_html__( 'Follow me on SlideShare', 'ctw' ) ),
+			array( 'url' => of_get_option( 'social_dribbble', '' ), 'icon' => 'fa-dribbble', 'title' => esc_html__( 'Follow me on Dribbble', 'ctw' ) ),
+			array( 'url' => of_get_option( 'social_tumblr', '' ), 'icon' => 'fa-tumblr', 'title' => esc_html__( 'Follow me on Tumblr', 'ctw' ) ),
+			array( 'url' => of_get_option( 'social_github', '' ), 'icon' => 'fa-github', 'title' => esc_html__( 'Fork me on GitHub', 'ctw' ) ),
+			array( 'url' => of_get_option( 'social_bitbucket', '' ), 'icon' => 'fa-bitbucket', 'title' => esc_html__( 'Fork me on Bitbucket', 'ctw' ) ),
+			array( 'url' => of_get_option( 'social_foursquare', '' ), 'icon' => 'fa-foursquare', 'title' => esc_html__( 'Follow me on Foursquare', 'ctw' ) ),
+			array( 'url' => of_get_option( 'social_youtube', '' ), 'icon' => 'fa-youtube', 'title' => esc_html__( 'Subscribe to me on YouTube', 'ctw' ) ),
+			array( 'url' => of_get_option( 'social_instagram', '' ), 'icon' => 'fa-instagram', 'title' => esc_html__( 'Follow me on Instagram', 'ctw' ) ),
+			array( 'url' => of_get_option( 'social_flickr', '' ), 'icon' => 'fa-flickr', 'title' => esc_html__( 'Connect with me on Flickr', 'ctw' ) ),
+			array( 'url' => of_get_option( 'social_pinterest', '' ), 'icon' => 'fa-pinterest', 'title' => esc_html__( 'Follow me on Pinterest', 'ctw' ) ),
+			array( 'url' => of_get_option( 'social_rss', '' ), 'icon' => 'fa-rss', 'title' => esc_html__( 'Subscribe to my RSS Feed', 'ctw' ) )
 		);
 
 		foreach ( $icons as $key ) {
@@ -903,23 +1034,24 @@ if ( ! function_exists( 'qohelet_get_social_media' ) ) {
 /**
  * Return a string containing the footer credits & link
  *
- * @since Qohelet 0.0.1
+ * @since ctw 0.0.1
  *
  * @return string Footer credits & link
  */
-if ( ! function_exists( 'qohelet_get_credits' ) ) {
-	function qohelet_get_credits() {
+if ( ! function_exists( 'ctw_get_credits' ) ) {
+	function ctw_get_credits() {
 		$output = '';
+                $ocws_the_themename = wp_get_theme();
 		/*
                 $output = sprintf( '%1$s <a href="%2$s" title="%3$s">%4$s</a>',
-			esc_html__( 'Proudly powered by', 'qohelet' ),
-			esc_url( esc_html__( 'http://wordpress.org/', 'qohelet' ) ),
-			esc_attr( esc_html__( 'Semantic Personal Publishing Platform', 'qohelet' ) ),
-			esc_html__( 'WordPress', 'qohelet' )
+			esc_html__( 'Proudly powered by', 'ctw' ),
+			esc_url( esc_html__( 'http://wordpress.org/', 'ctw' ) ),
+			esc_attr( esc_html__( 'Semantic Personal Publishing Platform', 'ctw' ) ),
+			esc_html__( 'WordPress', 'ctw' )
 		);
                  * The code belw needs amending for translation purposes
                  */
-                $output = 'This website is powered by <a href="http://wordpress.org">Wordpress</a>, using the <strong>Qohelet</strong> theme from <a href="http://oldcastleweb.com">Old Castle Web Solutions</a>.';
+                $output = 'This here website is powered by <a href="http://wordpress.org">Wordpress</a>, using the <strong>'.$ocws_the_themename->get('Name').'</strong> theme, Version '.$ocws_the_themename->get('Version').' from <a href="http://oldcastleweb.com">Old Castle Web Solutions</a>.';
 
 		return $output;
 	}
@@ -929,16 +1061,16 @@ if ( ! function_exists( 'qohelet_get_credits' ) ) {
 /**
  * Outputs the selected Theme Options inline into the <head>
  *
- * @since Qohelet 0.0.1
+ * @since ctw 0.0.1
  *
  * @return void
  */
-function qohelet_theme_options_styles() {
+function ctw_theme_options_styles() {
 	$output = '';
 	$imagepath =  trailingslashit( get_template_directory_uri() ) . 'images/';
 	$background_defaults = array(
 		'color' => '#222222',
-		'image' => $imagepath . 'dark-noise-2.jpg',
+		'image' => $imagepath . 'dark-noise.jpg',
 		'repeat' => 'repeat',
 		'position' => 'top left',
 		'attachment'=>'scroll' );
@@ -969,7 +1101,7 @@ function qohelet_theme_options_styles() {
 		echo $output;
 	}
 }
-add_action( 'wp_head', 'qohelet_theme_options_styles' );
+add_action( 'wp_head', 'ctw_theme_options_styles' );
 
 
 /**
@@ -978,7 +1110,7 @@ add_action( 'wp_head', 'qohelet_theme_options_styles' );
  * We don't include an add_filter for 'prepend_attachment' as it causes an image to appear in the content, on attachment pages.
  * Also, since the Theme Options editor doesn't allow you to add images anyway, no big deal.
  *
- * @since Qohelet 0.0.1
+ * @since ctw 0.0.1
  */
 add_filter( 'meta_content', 'wptexturize' );
 add_filter( 'meta_content', 'convert_smilies' );
@@ -997,12 +1129,12 @@ remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wra
 /**
  * Outputs the opening container div for WooCommerce
  *
- * @since Qohelet 0.0.1
+ * @since ctw 0.0.1
  *
  * @return void
  */
-if ( ! function_exists( 'qohelet_before_woocommerce_wrapper' ) ) {
-	function qohelet_before_woocommerce_wrapper() {
+if ( ! function_exists( 'ctw_before_woocommerce_wrapper' ) ) {
+	function ctw_before_woocommerce_wrapper() {
 		echo '<div id="primary" class="site-content row" role="main">';
 	}
 }
@@ -1011,12 +1143,12 @@ if ( ! function_exists( 'qohelet_before_woocommerce_wrapper' ) ) {
 /**
  * Outputs the closing container div for WooCommerce
  *
- * @since Qohelet 0.0.1
+ * @since ctw 0.0.1
  *
  * @return void
  */
-if ( ! function_exists( 'qohelet_after_woocommerce_wrapper' ) ) {
-	function qohelet_after_woocommerce_wrapper() {
+if ( ! function_exists( 'ctw_after_woocommerce_wrapper' ) ) {
+	function ctw_after_woocommerce_wrapper() {
 		echo '</div> <!-- /#primary.site-content.row -->';
 	}
 }
@@ -1025,11 +1157,11 @@ if ( ! function_exists( 'qohelet_after_woocommerce_wrapper' ) ) {
 /**
  * Check if WooCommerce is active
  *
- * @since Qohelet 0.0.1
+ * @since ctw 0.0.1
  *
  * @return void
  */
-function qohelet_is_woocommerce_active() {
+function ctw_is_woocommerce_active() {
 	if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 		return true;
 	}
@@ -1042,30 +1174,30 @@ function qohelet_is_woocommerce_active() {
 /**
  * Check if WooCommerce is active and a WooCommerce template is in use and output the containing div
  *
- * @since Qohelet 0.0.1
+ * @since ctw 0.0.1
  *
  * @return void
  */
-if ( ! function_exists( 'qohelet_setup_woocommerce_wrappers' ) ) {
-	function qohelet_setup_woocommerce_wrappers() {
-		if ( qohelet_is_woocommerce_active() && is_woocommerce() ) {
-				add_action( 'qohelet_before_woocommerce', 'qohelet_before_woocommerce_wrapper', 10, 0 );
-				add_action( 'qohelet_after_woocommerce', 'qohelet_after_woocommerce_wrapper', 10, 0 );		
+if ( ! function_exists( 'ctw_setup_woocommerce_wrappers' ) ) {
+	function ctw_setup_woocommerce_wrappers() {
+		if ( ctw_is_woocommerce_active() && is_woocommerce() ) {
+				add_action( 'ctw_before_woocommerce', 'ctw_before_woocommerce_wrapper', 10, 0 );
+				add_action( 'ctw_after_woocommerce', 'ctw_after_woocommerce_wrapper', 10, 0 );		
 		}
 	}
-	add_action( 'template_redirect', 'qohelet_setup_woocommerce_wrappers', 9 );
+	add_action( 'template_redirect', 'ctw_setup_woocommerce_wrappers', 9 );
 }
 
 
 /**
  * Outputs the opening wrapper for the WooCommerce content
  *
- * @since Qohelet 0.0.1
+ * @since ctw 0.0.1
  *
  * @return void
  */
-if ( ! function_exists( 'qohelet_woocommerce_before_main_content' ) ) {
-	function qohelet_woocommerce_before_main_content() {
+if ( ! function_exists( 'ctw_woocommerce_before_main_content' ) ) {
+	function ctw_woocommerce_before_main_content() {
 		if( ( is_shop() && !of_get_option( 'woocommerce_shopsidebar', '1' ) ) || ( is_product() && !of_get_option( 'woocommerce_productsidebar', '1' ) ) ) {
 			echo '<div class="col grid_12_of_12">';
 		}
@@ -1073,51 +1205,51 @@ if ( ! function_exists( 'qohelet_woocommerce_before_main_content' ) ) {
 			echo '<div class="col grid_8_of_12">';
 		}
 	}
-	add_action( 'woocommerce_before_main_content', 'qohelet_woocommerce_before_main_content', 10 );
+	add_action( 'woocommerce_before_main_content', 'ctw_woocommerce_before_main_content', 10 );
 }
 
 
 /**
  * Outputs the closing wrapper for the WooCommerce content
  *
- * @since Qohelet 0.0.1
+ * @since ctw 0.0.1
  *
  * @return void
  */
-if ( ! function_exists( 'qohelet_woocommerce_after_main_content' ) ) {
-	function qohelet_woocommerce_after_main_content() {
+if ( ! function_exists( 'ctw_woocommerce_after_main_content' ) ) {
+	function ctw_woocommerce_after_main_content() {
 		echo '</div>';
 	}
-	add_action( 'woocommerce_after_main_content', 'qohelet_woocommerce_after_main_content', 10 );
+	add_action( 'woocommerce_after_main_content', 'ctw_woocommerce_after_main_content', 10 );
 }
 
 
 /**
  * Remove the sidebar from the WooCommerce templates
  *
- * @since Qohelet 0.0.1
+ * @since ctw 0.0.1
  *
  * @return void
  */
-if ( ! function_exists( 'qohelet_remove_woocommerce_sidebar' ) ) {
-	function qohelet_remove_woocommerce_sidebar() {
+if ( ! function_exists( 'ctw_remove_woocommerce_sidebar' ) ) {
+	function ctw_remove_woocommerce_sidebar() {
 		if( ( is_shop() && !of_get_option( 'woocommerce_shopsidebar', '1' ) ) || ( is_product() && !of_get_option( 'woocommerce_productsidebar', '1' ) ) ) {
 			remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
 		}
 	}
-	add_action( 'woocommerce_before_main_content', 'qohelet_remove_woocommerce_sidebar' );
+	add_action( 'woocommerce_before_main_content', 'ctw_remove_woocommerce_sidebar' );
 }
 
 
 /**
  * Remove the breadcrumbs from the WooCommerce pages
  *
- * @since Qohelet 0.0.1
+ * @since ctw 0.0.1
  *
  * @return void
  */
-if ( ! function_exists( 'qohelet_remove_woocommerce_breadcrumbs' ) ) {
-	function qohelet_remove_woocommerce_breadcrumbs() {
+if ( ! function_exists( 'ctw_remove_woocommerce_breadcrumbs' ) ) {
+	function ctw_remove_woocommerce_breadcrumbs() {
 		remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
 	}
 }
@@ -1126,18 +1258,18 @@ if ( ! function_exists( 'qohelet_remove_woocommerce_breadcrumbs' ) ) {
 /**
  * Set the number of products to display on the WooCommerce shop page
  *
- * @since Qohelet 0.0.1.1
+ * @since ctw 0.0.1.1
  *
  * @return void
  */
-if ( ! function_exists( 'qohelet_set_number_woocommerce_products' ) ) {
-	function qohelet_set_number_woocommerce_products() {
+if ( ! function_exists( 'ctw_set_number_woocommerce_products' ) ) {
+	function ctw_set_number_woocommerce_products() {
 		if ( of_get_option( 'shop_products', '12' ) ) {
 			$numprods = "return " . sanitize_text_field( of_get_option( 'shop_products', '12' ) ) . ";";
 			add_filter( 'loop_shop_per_page', create_function( '$cols', $numprods ), 20 );
 		}
 	}
-	add_action( 'init', 'qohelet_set_number_woocommerce_products' );
+	add_action( 'init', 'ctw_set_number_woocommerce_products' );
 }
 
 /* Section to save options */
@@ -1229,7 +1361,7 @@ class backup_restore_theme_options {
                 
                 $ocwsqt_option_name = get_option( 'stylesheet' );
                 
-		return $wpdb->get_results("SELECT option_name, option_value FROM {$wpdb->options} WHERE option_name = '".$ocwsqt_option_name."'"); // edit 'qohelet' to match theme options
+		return $wpdb->get_results("SELECT option_name, option_value FROM {$wpdb->options} WHERE option_name = '".$ocwsqt_option_name."'"); // edit 'ctw' to match theme options
 	}
 }
 new backup_restore_theme_options();

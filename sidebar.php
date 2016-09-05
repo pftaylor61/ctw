@@ -2,11 +2,12 @@
 /**
  * The Sidebar containing the main widget areas.
  *
- * @package Qohelet
- * @since Qohelet 0.0.1
+ * @package ctw
+ * @since ctw 0.0.1
  */
 ?>
 	<div class="col grid_4_of_12">
+                
 
 		<div id="secondary" class="widget-area" role="complementary">
 			<?php
@@ -30,5 +31,6 @@
 			?>
 
 		</div> <!-- /#secondary.widget-area -->
+
 
 	</div> <!-- /.col.grid_4_of_12 -->
