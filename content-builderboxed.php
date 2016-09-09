@@ -2,8 +2,8 @@
 /**
  * The template used for displaying page content in page-builderboxed.php
  *
- * @package Qohelet
- * @since Qohelet 0.0.1
+ * @package ctw
+ * @since ctw 0.0.1
  */
 ?>
 
@@ -11,7 +11,7 @@
 	<div class="entry-content">
 		<?php the_content(); ?>
 		<?php wp_link_pages( array(
-			'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'qohelet' ),
+			'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'ctw' ),
 			'after' => '</div>',
 			'link_before' => '<span class="page-numbers">',
 			'link_after' => '</span>'

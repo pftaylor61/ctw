@@ -1,27 +1,26 @@
-![qohelet](./assets/qohelet400.png)
+![ctw](./assets/ctw400.png) ![ctw](./assets/castlelogo80x80.png)
 
-# Qohelet
-Qohelet is a fully responsive theme for Wordpress. It has been built on the shoulders of giants, utilizing a number of other technologies, such as: 1. The Quark starter theme by Anthony Horton. 2. Quark is in turn built upon Underscores by Automattix. 3. Quark utilizes Normalize, Modernizr and Options Framework. 4. Many other smaller amounts of other technologies have been incorporated, so that I did not re-invent the wheel.
+# Chasing the Wind
+"Chasing the Wind" is a fully responsive theme for Wordpress, designed for industrial websites. Qohelet has been adapted from my own ctw theme. However, ctw has been built on the shoulders of giants, utilizing a number of other technologies, such as: 1. The Quark starter theme by Anthony Horton. 2. Quark is in turn built upon Underscores by Automattix. 3. Quark utilizes Normalize, Modernizr and Options Framework. 4. Many other smaller amounts of other technologies have been incorporated, so that I did not re-invent the wheel.
 
-## Version 0.4.1
-Just added a little routine to display the theme name (or child theme name) in the Backup Options UI.
+## Version 1.0.1
+* Made a default, blurred background image, fixed and centered
+* Moved the Description (subtitle) text into the banner, and made it inline
 
 ## Version 0.4
-A system has been added to enable the export and import of theme options. This will save a lot of work!
-
-The system has been based on "Gantry Export and Import Options" by Hassan Derakhshandeh, and was put together in this form by Jeff Starr of [Digging into Wordpress](https://digwp.com/2014/04/backup-restore-theme-options/). However, the system as it stood would not work for child themes, so I edited it to get this to happen.
+* Media queries were added, to make sure the design works on small screens.
+* The options page was tidied up, to make sure that users can find the Slider options.
 
 ## Version 0.3
-An earlier attempt to use the Redux Framework has proved too problematic for the moment, sso I have removed it and returned to the Options Framework. I still think the Redux Framework is a better one to use for this theme, but that will have to wait for a later version, as I would like to get this version out and ready.
-
-A number of CSS changes have been made, in order to produce what, for me, is a more pleasing color scheme.
-
-Quite a few changes were made to the blockquote CSS, and the Google fonts were substituted for ones that I prefer.
-
-### Further Development
-I like the way that the Simone theme keeps the main content in a central section, except for small screens, where the center section becomes 100% width. I would like to incorporate something similar. In addition, I would like the post meta data to be out at the left hand side, rather than as a header, as it is at the moment.
+* The sliding widget area was restricted to the front page
+* The OCWS Slider was added as a required plugin
 
 ## Version 0.2
-The Redux Framework has been added, and some adjustments made. However, the Options Framework has not yet been removed, as it is deeply embedded, and requires some special (of_get_option) functions to be removed or edited.
+I have incorporated code from the WP Sliding Widget plugin. I incorporated the code, instead of requiring the plugin, because the sliding widget is an integral part of what I want for the theme, and also I had to do a fair amount of editing of the CSS, which was set for exact font sizing, instead of responsive sizing.
+
+## Version 0.1.1
+Initial production of the theme, from Qohelet.
+
+
 
 

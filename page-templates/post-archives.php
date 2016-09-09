@@ -4,8 +4,8 @@
  *
  * Description: Displays an archive of posts, ordered by date.
  *
- * @package Qohelet
- * @since Qohelet 0.0.1
+ * @package ctw
+ * @since ctw 0.0.1
  */
 
 get_header(); ?>

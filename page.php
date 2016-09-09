@@ -8,8 +8,8 @@
  * E.g., it puts together the home page when no home.php file exists.
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
- * @package Qohelet
- * @since Qohelet 0.0.1
+ * @package ctw
+ * @since ctw 0.0.1
  */
 
 get_header(); ?>

@@ -6,12 +6,12 @@
  * There are also four footer widgets displayed. These will be displayed from
  * one to four columns, depending on how many widgets are active.
  *
- * @package Qohelet
- * @since Qohelet 0.0.1
+ * @package ctw
+ * @since ctw 0.0.1
  */
 ?>
 
-		<?php	do_action( 'qohelet_after_woocommerce' ); ?>
+		<?php	do_action( 'ctw_after_woocommerce' ); ?>
 	</div> <!-- /#maincontentcontainer -->
 
 	<div id="footercontainer">
@@ -48,14 +48,14 @@
 
 		</footer> <!-- /.site-footer.row -->
 
-		<?php if ( of_get_option( 'footer_content', qohelet_get_credits() ) ) {
+		<?php if ( of_get_option( 'footer_content', ctw_get_credits() ) ) {
 			echo '<div class="row smallprint">';
-			echo apply_filters( 'meta_content', wp_kses_post( of_get_option( 'footer_content', qohelet_get_credits() ) ) );
+			echo apply_filters( 'meta_content', wp_kses_post( of_get_option( 'footer_content', ctw_get_credits() ) ) );
 			echo '</div> <!-- /.smallprint -->';
 		} ?>
 
 	</div> <!-- /.footercontainer -->
-
+    </div><!-- /#ocwsctw_inside_wrapper -->
 </div> <!-- /.#wrapper.hfeed.site -->
 
 <?php wp_footer(); ?>

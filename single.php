@@ -2,8 +2,8 @@
 /**
  * The Template for displaying all single posts.
  *
- * @package Qohelet
- * @since Qohelet 0.0.1
+ * @package ctw
+ * @since ctw 0.0.1
  */
 
 get_header(); ?>
@@ -23,7 +23,7 @@ get_header(); ?>
 					}
 					?>
 
-					<?php qohelet_content_nav( 'nav-below' ); ?>
+					<?php ctw_content_nav( 'nav-below' ); ?>
 
 				<?php endwhile; // end of the loop. ?>
 

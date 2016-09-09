@@ -8,8 +8,8 @@
  * E.g., it puts together the home page when no home.php file exists.
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
- * @package Qohelet
- * @since Qohelet 0.0.1
+ * @package ctw
+ * @since ctw 0.0.1
  */
 
 get_header(); ?>
@@ -25,7 +25,7 @@ get_header(); ?>
 					<?php get_template_part( 'content', get_post_format() ); // Include the Post-Format-specific template for the content ?>
 				<?php endwhile; ?>
 
-				<?php qohelet_content_nav( 'nav-below' ); ?>
+				<?php ctw_content_nav( 'nav-below' ); ?>
 
 			<?php else : ?>
 
@@ -34,7 +34,9 @@ get_header(); ?>
 			<?php endif; // end have_posts() check ?>
 
 		</div> <!-- /.col.grid_8_of_12 -->
-		<?php get_sidebar(); ?>
+		<?php 
+                get_sidebar(); 
+                 ?>
 
 	</div> <!-- /#primary.site-content.row -->
 

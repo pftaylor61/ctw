@@ -10,8 +10,8 @@
  * banner widgets, they will be displayed in anywhere from one to four columns, depending on
  * how many widgets are active.
  *
- * @package Qohelet
- * @since Qohelet 0.0.1
+ * @package ctw
+ * @since ctw 0.0.1
  */
 
 get_header(); ?>
@@ -23,7 +23,7 @@ get_header(); ?>
 
 				<?php while ( have_posts() ) : the_post(); ?>
 					<?php get_template_part( 'content', 'page' ); ?>
-					<?php comments_template( '', true ); ?>
+					<?php // comments_template( '', true ); ?>
 				<?php endwhile; // end of the loop. ?>
 
 			<?php endif; // end have_posts() check ?>
