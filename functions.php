@@ -190,20 +190,12 @@ if ( ! function_exists( 'ctw_setup' ) ) {
 		// Enable support for Custom Backgrounds
 		add_theme_support( 'custom-background', array(
 				// Background color default
-<<<<<<< HEAD
 				// 'default-color' => '5c4033',
 				// Background image default
 				'default-image' => trailingslashit( get_template_directory_uri() ) . 'images/hill_blur_40.jpg',
                                 'default-repeat'         => 'no-repeat',
                                 'default-attachment'     => 'fixed',
                                 'default-position'     => 'center'
-=======
-				'default-color' => '5c4033',
-				// Background image default
-				'default-image' => trailingslashit( get_template_directory_uri() ) . 'images/ctw_bg.png',
-                                'default-repeat'         => 'repeat-x',
-                                'default-position-x'     => 'top'
->>>>>>> origin/master
                                 //'default-image' =>''
 			) );
 

@@ -72,11 +72,7 @@
 						} ?>
 					</a>
 				</h1>
-<<<<<<< HEAD
                             
-=======
-                            <p><?php echo get_bloginfo( 'description'); ?></p>
->>>>>>> origin/master
 			</div> <!-- /.col.grid_5_of_12 -->
 
 			
@@ -85,11 +81,7 @@
 	</div> <!-- /#headercontainer -->
 	<div id="bannercontainer">
 		<div class="banner row">
-<<<<<<< HEAD
                     <p class="inlinetype"><?php echo get_bloginfo( 'description'); ?></p>
-=======
-                    
->>>>>>> origin/master
 			<nav id="site-navigation" class="main-navigation" role="navigation">
 					<h3 class="menu-toggle assistive-text"><?php esc_html_e( 'Menu', 'ctw' ); ?></h3>
 					<div class="assistive-text skip-link"><a href="#content" title="<?php esc_attr_e( 'Skip to content', 'ctw' ); ?>"><?php esc_html_e( 'Skip to content', 'ctw' ); ?></a></div>
